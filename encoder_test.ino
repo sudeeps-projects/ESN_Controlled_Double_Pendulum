@@ -1,4 +1,4 @@
-/*  ZIPY encoder wiring test - NO MOTOR.
+/*  ZIPY encoder wiring test - NO MOTOR..
  *
  *  Prints both encoders 10 times a second: the count, the live level of each
  *  signal pin, and how many times each pin changed since the last line.
