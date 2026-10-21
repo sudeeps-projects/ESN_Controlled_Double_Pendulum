@@ -29,7 +29,7 @@
  *  5. 'm' AND 'c' ZEROED THE CART ENCODER, quietly throwing away the origin
  *     'h' had measured - and the documented order runs m after h. Both work
  *     in relative counts now, and 'm' brings the cart back to the middle.
- *     'z' after homing zeroes the pole only.
+ *     'z' after homing zeroes the pole only..
  *
  *  6. THE DECAY TEST COUNTED HAND TREMOR AS SWINGS. Holding the pole at 90 deg
  *     before letting go, every jitter in thetadot counted as a turning point,
