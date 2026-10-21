@@ -1,4 +1,4 @@
-/*  ZIPY motor-only test - no encoders used.
+/*  ZIPY motor-only test - no encoders used.,
  *
  *  KEYS (type the letter, press Enter)
  *    w  drive RIGHT for one pulse
