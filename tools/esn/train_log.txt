@@ -1,0 +1,23 @@
+training ESN (N=64) by DAgger on randomised rigs...
+  DAgger iter 0 (beta 1.00): 160942 samples, 42/60 episodes held, 13 s
+  DAgger iter 1 (beta 0.50): 322394 samples, 43/60 episodes held, 13 s
+  DAgger iter 2 (beta 0.25): 480420 samples, 37/60 episodes held, 14 s
+  DAgger iter 3 (beta 0.12): 635091 samples, 40/60 episodes held, 13 s
+  DAgger iter 4 (beta 0.06): 792559 samples, 38/60 episodes held, 14 s
+  predictor near the top, 20 ms ahead: RMS error angle 0.10 deg (measurement alone 1.23), rate 5.2 deg/s (alone 20.6)
+evaluating, 40 unseen randomised rigs, 15 s balance, no shoves
+  expert (true state, not possible on the rig)   held 32/40, drops 1
+  LQR on measured state (firmware 1.5)           held 21/40, drops 21
+  ESN control readout                            held 33/40, drops 0
+  LQR on ESN-predicted state                     held 32/40, drops 1
+evaluating, 40 unseen randomised rigs, 15 s balance, moderate shoves (0.8 rad/s every 2-5 s)
+  expert (true state, not possible on the rig)   held 34/40, drops 5
+  LQR on measured state (firmware 1.5)           held 29/40, drops 10
+  ESN control readout                            held 32/40, drops 2
+  LQR on ESN-predicted state                     held 31/40, drops 5
+evaluating, 40 unseen randomised rigs, 15 s balance, hard shoves (1.2 rad/s every 1-2.5 s)
+  expert (true state, not possible on the rig)   held 21/40, drops 17
+  LQR on measured state (firmware 1.5)           held 11/40, drops 35
+  ESN control readout                            held 14/40, drops 35
+  LQR on ESN-predicted state                     held 13/40, drops 32
+  wrote C:\Users\SURESH\Desktop\claude_ino\tools\esn\esn_weights.h
