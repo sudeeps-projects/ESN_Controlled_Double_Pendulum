@@ -1,0 +1,333 @@
+idle  amp 162  half 1083ms  E 5.49/-3.94  x 38mm  pole -142.4deg  [not homed]  duty 0.00
+idle  amp 162  half 1083ms  E 6.35/-3.94  x 38mm  pole 127.2deg  [not homed]  duty 0.00
+idle  amp 162  half 1083ms  E 7.10/-3.94  x 38mm  pole -4.8deg  [not homed]  duty 0.00
+idle  amp 162  half 1083ms  E 3.82/-3.94  x 38mm  pole -145.8deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 38mm  pole -0.0deg  [not homed]  duty 0.00
+
+>> h
+
+# HOMING. The cart will creep to each end and touch it gently.
+# Keep hands clear. Press x if anything sounds wrong.
+# stalled part way to the -duty end (left?) - friction. Duty up to 0.30
+# -duty end (left?): moved 320 mm, last duty 0.38
+# stalled part way to the +duty end (right?) - friction. Duty up to 0.30
+# +duty end (right?): moved 608 mm, last duty 0.38
+# travel +/-304 mm   fence at +/-264 mm   (40 mm clear of each end)
+# centred, cart at 4 mm
+idle  amp 0  half 8783ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 20618ms  E -3.94/-3.94  x 4mm  pole -1.2deg  duty 0.00
+idle  amp 0  half 20618ms  E -3.94/-3.94  x 4mm  pole 0.4deg  duty 0.00
+idle  amp 2  half 12577ms  E -3.94/-3.94  x 4mm  pole -0.5deg  duty 0.00
+idle  amp 2  half 12577ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 7782ms  E -3.94/-3.94  x 4mm  pole -0.2deg  duty 0.00
+idle  amp 15  half 5905ms  E -3.81/-3.94  x -51mm  pole 8.7deg  duty 0.00
+idle  amp 15  half 5905ms  E -3.83/-3.94  x -51mm  pole -18.8deg  duty 0.00
+idle  amp 15  half 5905ms  E -3.93/-3.94  x -34mm  pole 1.6deg  duty 0.00
+idle  amp 15  half 5905ms  E -3.86/-3.94  x 2mm  pole 14.7deg  duty 0.00
+idle  amp 19  half 3881ms  E -3.51/-3.94  x 30mm  pole -12.6deg  duty 0.00
+idle  amp 19  half 3881ms  E -3.64/-3.94  x 55mm  pole -3.9deg  duty 0.00
+idle  amp 26  half 2601ms  E -3.77/-3.94  x 55mm  pole 23.7deg  duty 0.00
+idle  amp 26  half 2601ms  E -3.65/-3.94  x 55mm  pole -16.7deg  duty 0.00
+idle  amp 26  half 2601ms  E -3.70/-3.94  x 55mm  pole -8.4deg  duty 0.00
+idle  amp 26  half 2601ms  E -3.78/-3.94  x 55mm  pole 23.2deg  duty 0.00
+idle  amp 24  half 1870ms  E -3.67/-3.94  x 55mm  pole -12.0deg  duty 0.00
+idle  amp 24  half 1870ms  E -3.76/-3.94  x 55mm  pole -11.9deg  duty 0.00
+idle  amp 24  half 1870ms  E -3.79/-3.94  x 55mm  pole 21.7deg  duty 0.00
+idle  amp 23  half 1433ms  E -3.90/-3.94  x 41mm  pole -2.4deg  duty 0.00
+idle  amp 21  half 1021ms  E -3.86/-3.94  x -20mm  pole -10.8deg  duty 0.00
+idle  amp 21  half 1021ms  E -3.86/-3.94  x -20mm  pole -3.3deg  duty 0.00
+idle  amp 14  half 834ms  E -3.89/-3.94  x -20mm  pole 12.9deg  duty 0.00
+idle  amp 14  half 834ms  E -3.86/-3.94  x -20mm  pole -8.6deg  duty 0.00
+idle  amp 14  half 834ms  E -3.87/-3.94  x -20mm  pole -4.7deg  duty 0.00
+idle  amp 14  half 834ms  E -3.90/-3.94  x -20mm  pole 11.8deg  duty 0.00
+idle  amp 13  half 808ms  E -3.87/-3.94  x -20mm  pole -6.3deg  duty 0.00
+idle  amp 13  half 808ms  E -3.89/-3.94  x -20mm  pole -5.7deg  duty 0.00
+idle  amp 13  half 808ms  E -3.91/-3.94  x -20mm  pole 10.6deg  duty 0.00
+idle  amp 12  half 793ms  E -3.89/-3.94  x -20mm  pole -4.2deg  duty 0.00
+idle  amp 12  half 793ms  E -3.91/-3.94  x -20mm  pole -6.2deg  duty 0.00
+idle  amp 12  half 793ms  E -3.91/-3.94  x -20mm  pole 9.1deg  duty 0.00
+idle  amp 10  half 781ms  E -3.90/-3.94  x -20mm  pole -2.6deg  duty 0.00
+idle  amp 10  half 781ms  E -3.92/-3.94  x -20mm  pole -6.2deg  duty 0.00
+idle  amp 10  half 781ms  E -3.92/-3.94  x -20mm  pole 7.5deg  duty 0.00
+idle  amp 9  half 774ms  E -3.92/-3.94  x -20mm  pole -1.1deg  duty 0.00
+idle  amp 9  half 774ms  E -3.93/-3.94  x -20mm  pole -6.0deg  duty 0.00
+idle  amp 9  half 774ms  E -3.94/-3.94  x -20mm  pole -0.6deg  duty 0.00
+idle  amp 8  half 748ms  E -3.94/-3.94  x -20mm  pole -1.1deg  duty 0.00
+idle  amp 2  half 558ms  E -3.94/-3.94  x -20mm  pole -1.4deg  duty 0.00
+idle  amp 2  half 558ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 2  half 590ms  E -3.94/-3.94  x -20mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 590ms  E -3.94/-3.94  x -20mm  pole -0.3deg  duty 0.00
+idle  amp 2  half 590ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.2deg  duty 0.00
+
+>> z
+# pole zeroed - cart origin kept from homing
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+idle  amp 0  half 606ms  E -3.94/-3.94  x -20mm  pole -0.0deg  duty 0.00
+
+>> u
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 0  half 10806ms  E -3.85/-3.94  pumps 0 (+0.00)  PUMP  x 4/20mm  duty 0.95
+swing amp 0  half 10806ms  E -3.86/-3.94  pumps 0 (+0.00)  PUMP  x 79/79mm  duty 0.95
+swing amp 0  half 10806ms  E -3.35/-3.94  pumps 1 (+0.10)  PUMP  x 55/101mm  duty -0.95
+swing amp 42  half 6737ms  E -2.76/-3.94  pumps 2 (+0.73)  PUMP  x -16/101mm  duty 0.95
+swing amp 42  half 6737ms  E -2.70/-3.94  pumps 2 (+0.73)  centre  x 20/101mm  duty -0.07
+swing amp 42  half 6737ms  E -0.37/-3.94  pumps 3 (+0.90)  PUMP  x 41/101mm  duty -0.95
+swing amp 91  half 4388ms  E -1.77/-3.94  pumps 3 (+0.90)  centre  x 28/101mm  duty -0.09
+swing amp 91  half 4388ms  E 0.59/-3.94  pumps 4 (+1.19)  centre  x 19/101mm  duty -0.19
+swing amp 91  half 4388ms  E -0.89/-3.94  pumps 4 (+1.19)  centre  x 18/101mm  duty -0.06
+swing amp 91  half 4388ms  E 2.55/-3.94  pumps 5 (+1.37)  centre  x 26/101mm  duty 0.14
+# caught at 35.0 deg, -243 dps, after 5 reversals
+BAL   amp 91  half 4388ms  E -0.05/-3.94  duty 0.98
+BAL   amp 163  half 3118ms  E -0.03/-3.94  duty 0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 162  half 2001ms  E -1.34/-3.94  pumps 0 (+0.00)  centre  x 173/173mm  duty -0.75
+swing amp 162  half 2001ms  E 3.19/-3.94  pumps 1 (+0.93)  PUMP  x 143/173mm  duty 0.95
+# caught at -34.8 deg, 273 dps, after 1 reversals
+BAL   amp 162  half 2001ms  E -0.06/-3.94  duty -0.69
+BAL   amp 162  half 2001ms  E -0.06/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 162  half 2001ms  E 3.13/-3.94  pumps 0 (+0.00)  PUMP  x 86/86mm  duty 0.95
+# caught at 33.9 deg, -711 dps, after 1 reversals
+BAL   amp 162  half 2001ms  E 2.66/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 162  half 2001ms  E 6.98/-3.94  pumps 2 (+4.14)  PUMP  x 81/81mm  duty 0.95
+# caught at 34.6 deg, -764 dps, after 2 reversals
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 162  half 2001ms  E 3.77/-3.94  pumps 1 (+3.49)  PUMP  x 38/38mm  duty 0.95
+swing amp 162  half 2001ms  E -1.66/-3.94  pumps 2 (+4.22)  centre  x 86/89mm  duty -0.25
+swing amp 180  half 2022ms  E 1.72/-3.94  pumps 3 (+-7.64)  PUMP  x 73/89mm  duty 0.95
+swing amp 180  half 2022ms  E -0.96/-3.94  pumps 3 (+-7.64)  centre  x 74/89mm  duty -0.21
+swing amp 180  half 2022ms  E 1.00/-3.94  pumps 4 (+0.78)  PUMP  x 91/91mm  duty -0.95
+# caught at 34.8 deg, -217 dps, after 4 reversals
+BAL   amp 180  half 2022ms  E -0.01/-3.94  duty -0.61
+BAL   amp 160  half 1685ms  E -0.11/-3.94  duty 0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 160  half 1685ms  E 1.61/-3.94  pumps 0 (+0.00)  PUMP  x 209/209mm  duty 0.95
+swing amp 160  half 1685ms  E -0.09/-3.94  pumps 1 (+1.98)  centre  x 218/234mm  duty -0.54
+swing amp 160  half 1685ms  E -0.15/-3.94  pumps 1 (+1.98)  centre  x 185/234mm  duty -0.46
+swing amp 160  half 1685ms  E 2.19/-3.94  pumps 2 (+-0.93)  centre  x 180/234mm  duty -0.42
+# caught at 34.7 deg, -290 dps, after 2 reversals
+BAL   amp 160  half 1685ms  E -0.01/-3.94  duty -0.25
+BAL   amp 160  half 1685ms  E -0.00/-3.94  duty 0.87
+BAL   amp 160  half 1685ms  E 0.00/-3.94  duty 0.79
+BAL   amp 179  half 1082ms  E 0.05/-3.94  duty 0.10
+BAL   amp 179  half 1082ms  E -0.34/-3.94  duty 0.15
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 179  half 1082ms  E 1.48/-3.94  pumps 0 (+0.00)  PUMP  x 259/264mm  duty -0.95
+swing amp 179  half 1082ms  E 0.06/-3.94  pumps 1 (+1.78)  centre  x 232/264mm  duty -0.57
+swing amp 179  half 1082ms  E -0.08/-3.94  pumps 1 (+1.78)  centre  x 197/264mm  duty -0.49
+swing amp 179  half 1082ms  E 3.70/-3.94  pumps 2 (+-0.14)  centre  x 193/264mm  duty -0.35
+# caught at 34.4 deg, -408 dps, after 2 reversals
+BAL   amp 179  half 1082ms  E 0.39/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 179  half 1082ms  E 2.35/-3.94  pumps 1 (+0.99)  PUMP  x 95/95mm  duty 0.95
+# caught at 34.0 deg, -725 dps, after 2 reversals
+BAL   amp 179  half 1082ms  E 3.75/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 179  half 1082ms  E 6.69/-3.94  pumps 1 (+3.17)  PUMP  x 97/97mm  duty 0.95
+swing amp 180  half 1662ms  E -1.41/-3.94  pumps 2 (+4.10)  centre  x 108/119mm  duty -0.29
+swing amp 180  half 1662ms  E -0.08/-3.94  pumps 3 (+-7.63)  centre  x 100/119mm  duty -0.27
+swing amp 180  half 1662ms  E -0.79/-3.94  pumps 3 (+-7.63)  centre  x 91/119mm  duty -0.25
+swing amp 180  half 1662ms  E 1.14/-3.94  pumps 4 (+0.76)  centre  x 91/119mm  duty -0.23
+swing amp 136  half 1409ms  E -0.54/-3.94  pumps 4 (+0.76)  centre  x 83/119mm  duty -0.24
+swing amp 136  half 1409ms  E 3.07/-3.94  pumps 5 (+1.21)  PUMP  x 61/119mm  duty 0.95
+# caught at -34.8 deg, 354 dps, after 5 reversals
+BAL   amp 136  half 1409ms  E 0.24/-3.94  duty 0.98
+BAL   amp 136  half 1409ms  E 0.04/-3.94  duty 0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 0.54/-3.94  pumps 1 (+0.65)  PUMP  x 258/258mm  duty 0.20
+swing amp 136  half 1409ms  E 3.12/-3.94  pumps 2 (+3.19)  centre  x 258/259mm  duty -0.78
+# caught at -34.8 deg, 321 dps, after 2 reversals
+BAL   amp 136  half 1409ms  E -0.05/-3.94  duty -0.97
+BAL   amp 136  half 1409ms  E -0.03/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 3.93/-3.94  pumps 1 (+4.22)  PUMP  x 188/188mm  duty -0.95
+# caught at 34.2 deg, -743 dps, after 1 reversals
+BAL   amp 136  half 1409ms  E 2.93/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 6.49/-3.94  pumps 2 (+4.09)  centre  x 172/175mm  duty -0.54
+# caught at 34.7 deg, -791 dps, after 2 reversals
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 6.09/-3.94  pumps 1 (+3.86)  PUMP  x 141/141mm  duty 0.95
+# caught at 33.9 deg, -802 dps, after 2 reversals
+BAL   amp 136  half 1409ms  E 3.65/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 7.51/-3.94  pumps 2 (+4.08)  PUMP  x 176/176mm  duty 0.95
+# caught at 34.8 deg, -809 dps, after 2 reversals
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 5.40/-3.94  pumps 1 (+4.02)  PUMP  x 138/138mm  duty 0.95
+# caught at 34.7 deg, -807 dps, after 2 reversals
+BAL   amp 136  half 1409ms  E 4.12/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 7.90/-3.94  pumps 2 (+4.06)  PUMP  x 173/173mm  duty 0.95
+# caught at 34.4 deg, -790 dps, after 2 reversals
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 136  half 1409ms  E 3.45/-3.94  pumps 1 (+3.48)  PUMP  x 133/135mm  duty 0.95
+swing amp 136  half 1409ms  E 5.47/-3.94  pumps 2 (+4.12)  PUMP  x 175/184mm  duty -0.95
+# caught at 34.9 deg, -327 dps, after 2 reversals
+BAL   amp 180  half 2753ms  E -0.28/-3.94  duty 0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 180  half 2753ms  E 1.75/-3.94  pumps 0 (+0.00)  PUMP  x 255/257mm  duty -0.95
+swing amp 180  half 2753ms  E -0.06/-3.94  pumps 1 (+2.01)  centre  x 230/257mm  duty -0.56
+swing amp 180  half 2753ms  E -0.02/-3.94  pumps 1 (+2.01)  centre  x 196/257mm  duty -0.48
+swing amp 180  half 2753ms  E 3.19/-3.94  pumps 2 (+-0.46)  centre  x 191/257mm  duty -0.40
+# caught at 34.9 deg, -399 dps, after 2 reversals
+BAL   amp 180  half 2753ms  E 0.27/-3.94  duty -0.98
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 180  half 2753ms  E 1.87/-3.94  pumps 1 (+0.87)  PUMP  x 79/79mm  duty 0.95
+swing amp 180  half 2753ms  E 4.45/-3.94  pumps 2 (+3.74)  PUMP  x 101/118mm  duty -0.95
+# caught at 34.6 deg, -723 dps, after 2 reversals
+# dropped it - try 2
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 180  half 2753ms  E 6.02/-3.94  pumps 1 (+3.23)  PUMP  x 79/79mm  duty 0.95
+swing amp 180  half 2544ms  E -0.94/-3.94  pumps 2 (+3.99)  centre  x 99/108mm  duty -0.27
+swing amp 180  half 2544ms  E 1.44/-3.94  pumps 3 (+-6.66)  centre  x 92/108mm  duty -0.29
+swing amp 180  half 2544ms  E -0.60/-3.94  pumps 3 (+-6.66)  centre  x 84/108mm  duty -0.24
+swing amp 180  half 2544ms  E 2.63/-3.94  pumps 4 (+0.83)  PUMP  x 98/108mm  duty -0.95
+# caught at 34.9 deg, -342 dps, after 4 reversals
+BAL   amp 180  half 2544ms  E 0.10/-3.94  duty -0.98
+BAL   amp 180  half 2544ms  E -0.00/-3.94  duty -0.05
+BAL   amp 180  half 2544ms  E -0.00/-3.94  duty 0.63
+BAL   amp 179  half 1377ms  E -0.00/-3.94  duty 0.98
+BAL   amp 180  half 99ms  E 0.00/-3.94  duty 0.34
+BAL   amp 180  half 48ms  E 0.00/-3.94  duty 0.36
+BAL   amp 180  half 56ms  E -0.00/-3.94  duty 0.60
+-- stopped: by hand

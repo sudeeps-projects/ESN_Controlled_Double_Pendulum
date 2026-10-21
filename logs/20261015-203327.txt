@@ -1,0 +1,321 @@
+
+ZIPY swing-up v4.4. Motor off.
+Pole encoder A -> pin 1, B -> pin 2
+Order:  z  ->  c  ->  h  ->  m  ->  d  ->  u
+Virtual boundary: +/-190 mm (assumed). Press h to measure your rail.
+SIGN_X 1  SIGN_THETA 1  A_MAX 2.20  V_MAX 0.367  FRIC 0.080
+idle  amp 0  half 0ms  E 542.54/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 0  half 0ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 0  half 0ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 0  half 0ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.5deg  [not homed]  duty 0.00
+
+>> z
+# zeroed
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 1  half 691ms  E -3.94/-3.94  x 0mm  pole 0.0deg  [not homed]  duty 0.00
+
+>> c
+# calibrating - cart moves ~40 mm. Pole hanging still. x stops it.
+# cart 30.3 mm, pole 2.1 deg
+SIGN_X 1  SIGN_THETA 1  A_MAX 2.20  V_MAX 0.367  FRIC 0.080
+idle  amp 1  half 691ms  E -3.92/-3.94  x 32mm  pole -8.5deg  [not homed]  duty 0.00
+idle  amp 9  half 4065ms  E -3.91/-3.94  x 32mm  pole 1.7deg  [not homed]  duty 0.00
+idle  amp 9  half 2612ms  E -3.92/-3.94  x 32mm  pole 6.5deg  [not homed]  duty 0.00
+idle  amp 9  half 2612ms  E -3.92/-3.94  x 32mm  pole -7.1deg  [not homed]  duty 0.00
+idle  amp 9  half 2612ms  E -3.91/-3.94  x 32mm  pole 0.5deg  [not homed]  duty 0.00
+idle  amp 8  half 1872ms  E -3.93/-3.94  x 32mm  pole 6.2deg  [not homed]  duty 0.00
+idle  amp 8  half 1872ms  E -3.93/-3.94  x 32mm  pole -5.4deg  [not homed]  duty 0.00
+idle  amp 8  half 1872ms  E -3.93/-3.94  x 32mm  pole -0.6deg  [not homed]  duty 0.00
+idle  amp 7  half 1435ms  E -3.93/-3.94  x 32mm  pole 5.4deg  [not homed]  duty 0.00
+idle  amp 7  half 1435ms  E -3.93/-3.94  x 32mm  pole -4.0deg  [not homed]  duty 0.00
+idle  amp 7  half 1435ms  E -3.93/-3.94  x 32mm  pole -1.1deg  [not homed]  duty 0.00
+idle  amp 6  half 1165ms  E -3.94/-3.94  x 32mm  pole 4.5deg  [not homed]  duty 0.00
+idle  amp 6  half 1165ms  E -3.94/-3.94  x 32mm  pole -2.6deg  [not homed]  duty 0.00
+idle  amp 6  half 1165ms  E -3.94/-3.94  x 32mm  pole -1.3deg  [not homed]  duty 0.00
+idle  amp 6  half 1165ms  E -3.94/-3.94  x 32mm  pole 3.3deg  [not homed]  duty 0.00
+idle  amp 5  half 1007ms  E -3.94/-3.94  x 32mm  pole -1.3deg  [not homed]  duty 0.00
+idle  amp 5  half 1007ms  E -3.94/-3.94  x 32mm  pole -1.1deg  [not homed]  duty 0.00
+idle  amp 5  half 1007ms  E -3.94/-3.94  x 32mm  pole 1.8deg  [not homed]  duty 0.00
+idle  amp 3  half 914ms  E -3.94/-3.94  x 32mm  pole -0.4deg  [not homed]  duty 0.00
+idle  amp 3  half 914ms  E -3.94/-3.94  x 32mm  pole -0.2deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.1deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.0deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.1deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.1deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.1deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.1deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.1deg  [not homed]  duty 0.00
+idle  amp 2  half 817ms  E -3.94/-3.94  x 32mm  pole 0.1deg  [not homed]  duty 0.00
+
+>> h
+
+# HOMING. The cart will creep to each end and touch it gently.
+# Keep hands clear. Press x if anything sounds wrong.
+# stalled part way to the -duty end (left?) - friction. Duty up to 0.30
+# stalled part way to the -duty end (left?) - friction. Duty up to 0.38
+# -duty end (left?): moved 320 mm, last duty 0.38
+# stalled part way to the +duty end (right?) - friction. Duty up to 0.30
+# +duty end (right?): moved 617 mm, last duty 0.38
+# travel +/-308 mm   fence at +/-268 mm   (40 mm clear of each end)
+# centred, cart at 4 mm
+idle  amp 2  half 817ms  E -3.94/-3.94  x 4mm  pole 0.1deg  duty 0.00
+idle  amp 2  half 12460ms  E -3.94/-3.94  x 4mm  pole 1.2deg  duty 0.00
+idle  amp 2  half 12460ms  E -3.94/-3.94  x 4mm  pole -0.4deg  duty 0.00
+idle  amp 2  half 12460ms  E -3.94/-3.94  x 4mm  pole 0.8deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.1deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.94/-3.94  x 4mm  pole 0.3deg  duty 0.00
+
+>> m
+# measuring - the cart will run most of the rail. x stops it.
+
+# creep duty      0.230
+# top speed       0.317 m/s
+# accel from rest 5.36 m/s^2
+# pump delivers   0.967 J/kg per reversal at a 150 deg swing
+# the pole needs  3.94 J/kg in total
+SIGN_X 1  SIGN_THETA 1  A_MAX 5.36  V_MAX 0.317  FRIC 0.230
+# back in the middle, cart at -4 mm
+idle  amp 2  half 7716ms  E -3.89/-3.94  x -4mm  pole -13.7deg  duty 0.00
+idle  amp 2  half 7716ms  E -3.84/-3.94  x -3mm  pole 13.8deg  duty 0.00
+idle  amp 16  half 9437ms  E -3.83/-3.94  x -3mm  pole 0.9deg  duty 0.00
+idle  amp 16  half 9437ms  E -3.88/-3.94  x -3mm  pole -13.5deg  duty 0.00
+idle  amp 16  half 9437ms  E -3.84/-3.94  x -3mm  pole 11.4deg  duty 0.00
+idle  amp 15  half 5970ms  E -3.85/-3.94  x -3mm  pole 3.0deg  duty 0.00
+idle  amp 15  half 5970ms  E -3.89/-3.94  x -3mm  pole -13.0deg  duty 0.00
+idle  amp 15  half 5970ms  E -3.86/-3.94  x -3mm  pole 8.9deg  duty 0.00
+idle  amp 14  half 3889ms  E -3.87/-3.94  x -3mm  pole 4.5deg  duty 0.00
+idle  amp 14  half 3889ms  E -3.90/-3.94  x -3mm  pole -12.1deg  duty 0.00
+idle  amp 14  half 3889ms  E -3.87/-3.94  x -3mm  pole 6.6deg  duty 0.00
+idle  amp 13  half 2642ms  E -3.89/-3.94  x -3mm  pole 5.7deg  duty 0.00
+idle  amp 13  half 2642ms  E -3.91/-3.94  x -3mm  pole -10.8deg  duty 0.00
+idle  amp 13  half 2642ms  E -3.88/-3.94  x -3mm  pole 4.5deg  duty 0.00
+idle  amp 11  half 1893ms  E -3.91/-3.94  x -3mm  pole 6.3deg  duty 0.00
+idle  amp 11  half 1893ms  E -3.91/-3.94  x -3mm  pole -9.4deg  duty 0.00
+idle  amp 11  half 1893ms  E -3.90/-3.94  x -3mm  pole 2.7deg  duty 0.00
+idle  amp 10  half 1440ms  E -3.92/-3.94  x -3mm  pole 6.5deg  duty 0.00
+idle  amp 10  half 1440ms  E -3.92/-3.94  x -3mm  pole -7.8deg  duty 0.00
+idle  amp 10  half 1440ms  E -3.91/-3.94  x -3mm  pole 1.2deg  duty 0.00
+idle  amp 9  half 1173ms  E -3.93/-3.94  x -3mm  pole 6.2deg  duty 0.00
+idle  amp 9  half 1173ms  E -3.92/-3.94  x -3mm  pole -6.3deg  duty 0.00
+idle  amp 9  half 1173ms  E -3.92/-3.94  x -3mm  pole 0.0deg  duty 0.00
+idle  amp 8  half 1012ms  E -3.93/-3.94  x -3mm  pole 5.6deg  duty 0.00
+idle  amp 8  half 1012ms  E -3.93/-3.94  x -3mm  pole -4.7deg  duty 0.00
+idle  amp 8  half 1012ms  E -3.93/-3.94  x -3mm  pole -0.7deg  duty 0.00
+idle  amp 6  half 906ms  E -3.94/-3.94  x -3mm  pole 4.7deg  duty 0.00
+idle  amp 6  half 906ms  E -3.94/-3.94  x -3mm  pole -3.1deg  duty 0.00
+idle  amp 6  half 906ms  E -3.94/-3.94  x -3mm  pole -1.1deg  duty 0.00
+idle  amp 5  half 857ms  E -3.94/-3.94  x -3mm  pole 3.5deg  duty 0.00
+idle  amp 5  half 857ms  E -3.94/-3.94  x -3mm  pole -1.8deg  duty 0.00
+idle  amp 5  half 857ms  E -3.94/-3.94  x -3mm  pole -0.9deg  duty 0.00
+idle  amp 5  half 857ms  E -3.94/-3.94  x -3mm  pole 2.1deg  duty 0.00
+idle  amp 3  half 818ms  E -3.94/-3.94  x -3mm  pole -0.7deg  duty 0.00
+idle  amp 3  half 818ms  E -3.94/-3.94  x -3mm  pole -0.3deg  duty 0.00
+idle  amp 2  half 776ms  E -3.94/-3.94  x -3mm  pole 0.3deg  duty 0.00
+idle  amp 2  half 776ms  E -3.94/-3.94  x -3mm  pole 0.0deg  duty 0.00
+idle  amp 2  half 776ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+idle  amp 0  half 693ms  E -3.94/-3.94  x -3mm  pole 0.1deg  duty 0.00
+
+>> u
+# pumping: drive away from the pole near the bottom, recentre near the ends.
+swing amp 0  half 693ms  E -3.93/-3.94  pumps 0 (+0.00)  PUMP  x -1/3mm  duty 0.95
+swing amp 14  half 3177ms  E -3.50/-3.94  pumps 0 (+0.00)  PUMP  x 40/54mm  duty -0.95
+swing amp 14  half 3177ms  E -3.92/-3.94  pumps 1 (+0.47)  PUMP  x 99/99mm  duty 0.95
+swing amp 4  half 1305ms  E -3.94/-3.94  pumps 4 (+-0.01)  PUMP  x 137/139mm  duty -0.95
+swing amp 4  half 849ms  E -3.93/-3.94  pumps 7 (+0.01)  PUMP  x 156/157mm  duty 0.95
+swing amp 4  half 405ms  E -3.87/-3.94  pumps 11 (+0.00)  PUMP  x 172/181mm  duty -0.95
+swing amp 3  half 301ms  E -3.91/-3.94  pumps 14 (+0.00)  PUMP  x 197/197mm  duty -0.95
+swing amp 3  half 202ms  E -3.92/-3.94  pumps 17 (+0.01)  PUMP  x 198/202mm  duty 0.95
+swing amp 3  half 166ms  E -3.88/-3.94  pumps 21 (+-0.01)  PUMP  x 195/210mm  duty 0.95
+swing amp 3  half 153ms  E -3.94/-3.94  pumps 24 (+-0.01)  PUMP  x 209/213mm  duty -0.95
+swing amp 3  half 150ms  E -3.87/-3.94  pumps 28 (+0.00)  PUMP  x 212/214mm  duty -0.95
+swing amp 3  half 146ms  E -3.94/-3.94  pumps 31 (+0.00)  PUMP  x 201/214mm  duty 0.95
+# energy not climbing - flipped SIGN_THETA
+swing amp 3  half 147ms  E -3.89/-3.94  pumps 35 (+-0.01)  PUMP  x 198/214mm  duty -0.95
+swing amp 14  half 181ms  E -3.88/-3.94  pumps 35 (+-0.01)  PUMP  x 123/214mm  duty -0.95
+swing amp 14  half 181ms  E -3.10/-3.94  pumps 36 (+0.07)  PUMP  x 102/214mm  duty 0.95
+swing amp 14  half 181ms  E -3.20/-3.94  pumps 36 (+0.07)  PUMP  x 177/214mm  duty 0.95
+swing amp 14  half 181ms  E -2.53/-3.94  pumps 37 (+0.79)  centre  x 151/214mm  duty -0.36
+swing amp 71  half 440ms  E -1.54/-3.94  pumps 38 (+1.08)  PUMP  x 104/214mm  duty 0.95
+swing amp 71  half 440ms  E -2.08/-3.94  pumps 38 (+1.08)  centre  x 123/214mm  duty -0.31
+swing amp 71  half 440ms  E -0.24/-3.94  pumps 39 (+0.70)  TOP  x 150/214mm  z 0.71  duty 0.25
+swing amp 96  half 633ms  E -1.80/-3.94  pumps 39 (+0.70)  centre  x 125/214mm  duty -0.33
+swing amp 96  half 633ms  E 0.06/-3.94  pumps 40 (+0.70)  TOP  x 81/214mm  z 0.50  duty -0.40
+swing amp 96  half 633ms  E -1.58/-3.94  pumps 40 (+0.70)  centre  x 65/214mm  duty -0.19
+swing amp 96  half 633ms  E 0.16/-3.94  pumps 41 (+0.12)  TOP  x 97/214mm  z 0.30  duty 0.20
+swing amp 105  half 768ms  E -1.36/-3.94  pumps 41 (+0.12)  TOP  x 117/214mm  z 2.56  duty -0.13
+swing amp 105  half 768ms  E -0.64/-3.94  pumps 42 (+1.19)  TOP  x 143/214mm  z 0.49  duty 0.21
+swing amp 105  half 768ms  E -1.43/-3.94  pumps 42 (+1.19)  centre  x 140/214mm  duty -0.36
+swing amp 105  half 768ms  E -0.73/-3.94  pumps 43 (+-1.82)  TOP  x 166/214mm  z 0.43  duty -0.74
+swing amp 104  half 840ms  E -1.20/-3.94  pumps 43 (+-1.82)  PUMP  x 137/214mm  duty -0.95
+swing amp 104  half 840ms  E -0.79/-3.94  pumps 44 (+0.81)  TOP  x 97/214mm  z 0.51  duty -0.13
+swing amp 104  half 840ms  E -0.87/-3.94  pumps 44 (+0.81)  PUMP  x 73/214mm  duty 0.95
+swing amp 104  half 840ms  E -0.79/-3.94  pumps 45 (+0.31)  TOP  x 94/214mm  z 0.48  duty 0.33
+swing amp 108  half 894ms  E -0.27/-3.94  pumps 45 (+0.31)  TOP  x 122/214mm  z 4.12  duty 0.62
+swing amp 108  half 894ms  E -1.29/-3.94  pumps 46 (+0.88)  TOP  x 135/214mm  z 0.73  duty -0.04
+swing amp 108  half 894ms  E -1.10/-3.94  pumps 46 (+0.88)  PUMP  x 133/214mm  duty 0.95
+swing amp 108  half 894ms  E -1.20/-3.94  pumps 47 (+-1.76)  TOP  x 136/214mm  z 0.62  duty -0.24
+swing amp 107  half 925ms  E 0.18/-3.94  pumps 47 (+-1.76)  TOP  x 163/214mm  z 4.85  duty 0.88
+swing amp 107  half 925ms  E -1.71/-3.94  pumps 48 (+1.56)  centre  x 196/214mm  duty -0.76
+swing amp 107  half 925ms  E -1.20/-3.94  pumps 48 (+1.56)  PUMP  x 198/214mm  duty 0.95
+swing amp 107  half 925ms  E -1.58/-3.94  pumps 49 (+-1.85)  TOP  x 179/214mm  z 1.13  duty 0.46
+swing amp 103  half 937ms  E 0.25/-3.94  pumps 50 (+1.10)  TOP  x 143/214mm  z 1.04  duty -0.35
+swing amp 103  half 937ms  E -1.55/-3.94  pumps 50 (+1.10)  TOP  x 106/214mm  z 1.51  duty -0.91
+swing amp 103  half 937ms  E 0.66/-3.94  pumps 51 (+0.71)  TOP  x 58/214mm  z 0.41  duty -0.59
+swing amp 103  half 941ms  E -1.73/-3.94  pumps 51 (+0.71)  centre  x 25/214mm  duty -0.08
+swing amp 103  half 941ms  E 0.21/-3.94  pumps 52 (+-1.30)  TOP  x -7/214mm  z 0.58  duty -0.14
+swing amp 103  half 941ms  E -1.51/-3.94  pumps 52 (+-1.30)  TOP  x -26/214mm  z 1.95  duty -0.28
+swing amp 103  half 941ms  E 0.09/-3.94  pumps 53 (+1.51)  TOP  x -61/214mm  z 0.38  duty -0.22
+swing amp 105  half 950ms  E -1.72/-3.94  pumps 53 (+1.51)  centre  x -76/214mm  duty 0.21
+swing amp 105  half 950ms  E -0.16/-3.94  pumps 54 (+-1.75)  TOP  x -109/214mm  z 0.43  duty 0.23
+swing amp 105  half 950ms  E -1.49/-3.94  pumps 54 (+-1.75)  centre  x -93/214mm  duty 0.25
+swing amp 105  half 950ms  E 0.04/-3.94  pumps 55 (+0.85)  TOP  x -62/214mm  z 0.32  duty 0.40
+swing amp 104  half 959ms  E -1.26/-3.94  pumps 55 (+0.85)  TOP  x -30/214mm  z 2.83  duty 0.31
+swing amp 104  half 959ms  E -0.61/-3.94  pumps 56 (+0.72)  TOP  x 13/214mm  z 0.37  duty 0.60
+swing amp 104  half 959ms  E -1.21/-3.94  pumps 56 (+0.72)  PUMP  x 28/214mm  duty 0.95
+swing amp 104  half 959ms  E -0.59/-3.94  pumps 57 (+-1.42)  TOP  x 58/214mm  z 0.35  duty -0.60
+swing amp 104  half 961ms  E -0.84/-3.94  pumps 57 (+-1.42)  TOP  x 71/214mm  z 3.59  duty 0.76
+swing amp 104  half 961ms  E -1.16/-3.94  pumps 58 (+1.48)  TOP  x 109/214mm  z 0.57  duty 0.91
+swing amp 104  half 961ms  E -1.31/-3.94  pumps 58 (+1.48)  PUMP  x 116/214mm  duty 0.95
+swing amp 104  half 961ms  E -1.17/-3.94  pumps 59 (+-1.75)  TOP  x 128/214mm  z 0.55  duty -0.57
+swing amp 103  half 960ms  E -0.84/-3.94  pumps 59 (+-1.75)  PUMP  x 105/214mm  duty -0.95
+swing amp 103  half 960ms  E -1.20/-3.94  pumps 60 (+1.02)  TOP  x 75/214mm  z 0.83  duty -0.91
+swing amp 103  half 960ms  E 0.44/-3.94  pumps 60 (+1.02)  TOP  x 29/214mm  z 5.09  duty -0.88
+swing amp 103  half 960ms  E -1.61/-3.94  pumps 61 (+0.67)  centre  x -16/214mm  duty 0.18
+swing amp 104  half 957ms  E -0.73/-3.94  pumps 61 (+0.67)  TOP  x -39/214mm  z 4.77  duty -0.71
+swing amp 104  half 957ms  E -1.43/-3.94  pumps 62 (+-1.47)  TOP  x -45/214mm  z 1.16  duty -0.91
+swing amp 104  half 957ms  E 0.84/-3.94  pumps 63 (+1.57)  TOP  x -87/214mm  z 0.63  duty -0.55
+swing amp 105  half 959ms  E -1.82/-3.94  pumps 63 (+1.57)  centre  x -109/214mm  duty 0.29
+swing amp 105  half 959ms  E -0.22/-3.94  pumps 64 (+-1.77)  TOP  x -132/214mm  z 0.89  duty -0.43
+swing amp 105  half 959ms  E -1.66/-3.94  pumps 64 (+-1.77)  centre  x -118/214mm  duty 0.36
+swing amp 105  half 959ms  E 0.67/-3.94  pumps 65 (+0.96)  TOP  x -86/214mm  z 0.47  duty 0.40
+swing amp 104  half 963ms  E -1.56/-3.94  pumps 65 (+0.96)  TOP  x -48/214mm  z 2.02  duty 0.25
+swing amp 104  half 963ms  E 0.18/-3.94  pumps 66 (+0.72)  TOP  x -7/214mm  z 0.30  duty 0.40
+swing amp 104  half 963ms  E -1.63/-3.94  pumps 66 (+0.72)  centre  x 18/214mm  duty -0.06
+swing amp 104  half 963ms  E 0.08/-3.94  pumps 67 (+-1.40)  TOP  x 49/214mm  z 0.32  duty -0.21
+swing amp 104  half 963ms  E -1.37/-3.94  pumps 67 (+-1.40)  TOP  x 60/214mm  z 2.51  duty -0.21
+swing amp 104  half 963ms  E -0.47/-3.94  pumps 68 (+1.49)  TOP  x 95/214mm  z 0.41  duty 0.34
+swing amp 104  half 963ms  E -1.41/-3.94  pumps 68 (+1.49)  centre  x 103/214mm  duty -0.28
+swing amp 104  half 963ms  E -0.55/-3.94  pumps 69 (+-1.77)  TOP  x 132/214mm  z 0.38  duty -0.65
+swing amp 103  half 960ms  E -1.18/-3.94  pumps 69 (+-1.77)  PUMP  x 110/214mm  duty -0.95
+swing amp 103  half 960ms  E -0.62/-3.94  pumps 70 (+0.86)  TOP  x 73/214mm  z 0.46  duty -0.07
+swing amp 103  half 960ms  E -0.70/-3.94  pumps 70 (+0.86)  TOP  x 39/214mm  z 3.80  duty -0.91
+swing amp 103  half 960ms  E -1.17/-3.94  pumps 71 (+0.85)  TOP  x -10/214mm  z 0.53  duty -0.77
+swing amp 104  half 957ms  E -1.11/-3.94  pumps 71 (+0.85)  PUMP  x -27/214mm  duty -0.95
+swing amp 104  half 957ms  E -1.07/-3.94  pumps 72 (+-1.56)  TOP  x -45/214mm  z 0.58  duty 0.08
+swing amp 104  half 957ms  E 0.04/-3.94  pumps 72 (+-1.56)  TOP  x -76/214mm  z 4.64  duty -0.91
+swing amp 104  half 957ms  E -1.60/-3.94  pumps 73 (+1.59)  TOP  x -115/214mm  z 0.89  duty -0.35
+swing amp 105  half 960ms  E -1.13/-3.94  pumps 73 (+1.59)  PUMP  x -125/214mm  duty -0.95
+swing amp 105  half 960ms  E -1.51/-3.94  pumps 74 (+-1.83)  TOP  x -119/214mm  z 1.00  duty -0.32
+swing amp 105  half 960ms  E -0.10/-3.94  pumps 74 (+-1.83)  TOP  x -91/214mm  z 4.97  duty 0.35
+swing amp 105  half 960ms  E -1.49/-3.94  pumps 75 (+1.00)  TOP  x -63/214mm  z 1.33  duty 0.91
+swing amp 104  half 964ms  E 0.78/-3.94  pumps 76 (+0.70)  TOP  x -17/214mm  z 0.52  duty 0.61
+swing amp 104  half 964ms  E -1.73/-3.94  pumps 76 (+0.70)  centre  x 16/214mm  duty -0.06
+swing amp 104  half 964ms  E -0.03/-3.94  pumps 77 (+-1.34)  TOP  x 47/214mm  z 0.79  duty 0.14
+swing amp 104  half 964ms  E -1.54/-3.94  pumps 77 (+-1.34)  TOP  x 54/214mm  z 1.75  duty 0.54
+swing amp 104  half 964ms  E 0.45/-3.94  pumps 78 (+1.40)  TOP  x 93/214mm  z 0.35  duty 0.24
+swing amp 104  half 964ms  E -1.75/-3.94  pumps 78 (+1.40)  centre  x 106/214mm  duty -0.28
+swing amp 104  half 964ms  E -0.18/-3.94  pumps 79 (+-1.68)  TOP  x 135/214mm  z 0.53  duty -0.11
+swing amp 103  half 960ms  E -1.61/-3.94  pumps 79 (+-1.68)  centre  x 112/214mm  duty -0.29
+swing amp 103  half 960ms  E 0.21/-3.94  pumps 80 (+0.81)  TOP  x 77/214mm  z 0.32  duty -0.42
+swing amp 103  half 960ms  E -1.35/-3.94  pumps 80 (+0.81)  TOP  x 42/214mm  z 2.62  duty -0.15
+swing amp 103  half 960ms  E -0.52/-3.94  pumps 81 (+0.84)  TOP  x -3/214mm  z 0.36  duty -0.58
+swing amp 104  half 958ms  E -1.36/-3.94  pumps 81 (+0.84)  centre  x -22/214mm  duty 0.07
+swing amp 104  half 958ms  E -0.36/-3.94  pumps 82 (+-1.46)  TOP  x -56/214mm  z 0.30  duty 0.47
+swing amp 104  half 958ms  E -1.05/-3.94  pumps 82 (+-1.46)  TOP  x -70/214mm  z 3.28  duty -0.64
+swing amp 104  half 958ms  E -1.07/-3.94  pumps 83 (+1.53)  TOP  x -110/214mm  z 0.54  duty -0.82
+swing amp 105  half 960ms  E -1.26/-3.94  pumps 83 (+1.53)  PUMP  x -116/214mm  duty -0.95
+swing amp 105  half 960ms  E -1.04/-3.94  pumps 84 (+-1.81)  TOP  x -133/214mm  z 0.48  duty 0.76
+swing amp 105  half 960ms  E -0.92/-3.94  pumps 84 (+-1.81)  PUMP  x -111/214mm  duty 0.95
+swing amp 105  half 960ms  E -1.10/-3.94  pumps 85 (+1.05)  TOP  x -80/214mm  z 0.70  duty 0.67
+swing amp 104  half 964ms  E 0.12/-3.94  pumps 85 (+1.05)  TOP  x -36/214mm  z 4.82  duty 0.91
+swing amp 104  half 964ms  E -1.53/-3.94  pumps 86 (+0.69)  TOP  x 11/214mm  z 0.91  duty 0.01
+swing amp 104  half 964ms  E -0.84/-3.94  pumps 86 (+0.69)  PUMP  x 31/214mm  duty 0.95
+swing amp 104  half 964ms  E -1.39/-3.94  pumps 87 (+-1.35)  TOP  x 37/214mm  z 1.02  duty 0.77
+swing amp 104  half 964ms  E 0.76/-3.94  pumps 88 (+1.41)  TOP  x 79/214mm  z 0.79  duty 0.70
+swing amp 104  half 964ms  E -1.75/-3.94  pumps 88 (+1.41)  centre  x 107/214mm  duty -0.32
+swing amp 104  half 964ms  E -0.48/-3.94  pumps 89 (+-1.72)  TOP  x 129/214mm  z 1.14  duty 0.60
+swing amp 103  half 962ms  E -1.65/-3.94  pumps 89 (+-1.72)  centre  x 117/214mm  duty -0.41
+swing amp 103  half 962ms  E 0.64/-3.94  pumps 90 (+0.98)  TOP  x 84/214mm  z 0.63  duty -0.35
+swing amp 103  half 962ms  E -1.54/-3.94  pumps 90 (+0.98)  TOP  x 45/214mm  z 1.82  duty -0.51
+swing amp 103  half 962ms  E 0.42/-3.94  pumps 91 (+0.67)  TOP  x 2/214mm  z 0.32  duty -0.40
+swing amp 104  half 957ms  E -1.71/-3.94  pumps 91 (+0.67)  centre  x -25/214mm  duty 0.08
+swing amp 104  half 957ms  E 0.26/-3.94  pumps 92 (+-1.44)  TOP  x -58/214mm  z 0.36  duty 0.12
+swing amp 104  half 957ms  E -1.44/-3.94  pumps 92 (+-1.44)  TOP  x -72/214mm  z 2.25  duty 0.28
+swing amp 104  half 957ms  E -0.31/-3.94  pumps 93 (+1.60)  TOP  x -102/214mm  z 0.43  duty -0.22
+swing amp 105  half 959ms  E -1.59/-3.94  pumps 93 (+1.60)  centre  x -109/214mm  duty 0.29
+swing amp 105  half 959ms  E -0.41/-3.94  pumps 94 (+-1.83)  TOP  x -138/214mm  z 0.38  duty 0.48
+swing amp 105  half 959ms  E -1.31/-3.94  pumps 94 (+-1.83)  centre  x -116/214mm  duty 0.30
+swing amp 105  half 959ms  E -0.39/-3.94  pumps 95 (+1.03)  TOP  x -81/214mm  z 0.40  duty 0.29
+swing amp 104  half 964ms  E -0.94/-3.94  pumps 95 (+1.03)  TOP  x -48/214mm  z 3.47  duty 0.83
+swing amp 104  half 964ms  E -0.99/-3.94  pumps 96 (+0.70)  TOP  x 1/214mm  z 0.46  duty 0.91
+swing amp 104  half 964ms  E -1.13/-3.94  pumps 96 (+0.70)  PUMP  x 18/214mm  duty 0.95
+swing amp 104  half 964ms  E -0.93/-3.94  pumps 97 (+-1.44)  TOP  x 39/214mm  z 0.47  duty -0.33
+swing amp 104  half 964ms  E -0.29/-3.94  pumps 97 (+-1.44)  TOP  x 66/214mm  z 4.33  duty 0.91
+swing amp 104  half 964ms  E -1.45/-3.94  pumps 98 (+1.46)  TOP  x 107/214mm  z 0.75  duty 0.51
+swing amp 104  half 964ms  E -1.08/-3.94  pumps 98 (+1.46)  PUMP  x 117/214mm  duty 0.95
+swing amp 104  half 964ms  E -1.45/-3.94  pumps 99 (+-1.69)  TOP  x 116/214mm  z 0.84  duty -0.04
+swing amp 103  half 961ms  E -0.51/-3.94  pumps 99 (+-1.69)  TOP  x 88/214mm  z 4.65  duty -0.50
+swing amp 103  half 961ms  E -1.38/-3.94  pumps 100 (+0.79)  TOP  x 61/214mm  z 1.13  duty -0.91
+-- stopped: by hand
+idle  amp 103  half 961ms  E -0.03/-3.94  x 22mm  pole 2.6deg  duty 0.00
