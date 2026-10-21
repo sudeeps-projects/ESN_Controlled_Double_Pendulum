@@ -1,0 +1,2023 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>ZIPY Belt Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --bg:        #e9ecee;
+    --panel:     #f7f8f9;
+    --panel-2:   #eef1f3;
+    --ink:       #171c20;
+    --muted:     #667078;
+    --line:      #ccd3d8;
+    --line-soft: #dde2e6;
+    --accent:    #d1481f;
+    --accent-dim:#f2ded6;
+    --steel:     #3d7f92;
+    --stage-a:   #dfe4e7;
+    --stage-b:   #f2f4f5;
+    --shadow:    0 1px 2px rgba(20,28,34,.07), 0 8px 24px rgba(20,28,34,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #121517;
+      --panel:     #1a1e21;
+      --panel-2:   #21262a;
+      --ink:       #e8ebed;
+      --muted:     #8d979e;
+      --line:      #2a3034;
+      --line-soft: #23282c;
+      --accent:    #f0713f;
+      --accent-dim:#3a231a;
+      --steel:     #5ba7bd;
+      --stage-a:   #191d20;
+      --stage-b:   #0e1113;
+      --shadow:    0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:        #121517;
+    --panel:     #1a1e21;
+    --panel-2:   #21262a;
+    --ink:       #e8ebed;
+    --muted:     #8d979e;
+    --line:      #2a3034;
+    --line-soft: #23282c;
+    --accent:    #f0713f;
+    --accent-dim:#3a231a;
+    --steel:     #5ba7bd;
+    --stage-a:   #191d20;
+    --stage-b:   #0e1113;
+    --shadow:    0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 56px; }
+
+  header { border-bottom: 1px solid var(--line); padding-bottom: 18px; margin-bottom: 22px; }
+  .eyebrow {
+    font-family: "Barlow Condensed", "IBM Plex Sans", sans-serif;
+    font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--steel); margin: 0 0 4px;
+  }
+  h1 {
+    font-family: "Barlow Condensed", "IBM Plex Sans", sans-serif;
+    font-weight: 700; font-size: clamp(32px, 6vw, 46px); line-height: 1.04;
+    letter-spacing: -.005em; margin: 0 0 8px; text-wrap: balance;
+  }
+  .standfirst { margin: 0; max-width: 64ch; color: var(--muted); font-size: 15.5px; }
+
+  .stage {
+    position: relative; border: 1px solid var(--line); border-radius: 3px;
+    background: linear-gradient(170deg, var(--stage-a), var(--stage-b));
+    overflow: hidden; aspect-ratio: 16 / 10; box-shadow: var(--shadow);
+  }
+  @media (min-width: 880px) { .stage { aspect-ratio: 16 / 8.2; } }
+  .stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+
+  .hint {
+    position: absolute; left: 12px; bottom: 10px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .04em; color: var(--muted);
+    pointer-events: none; opacity: .85;
+  }
+  .loading {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted);
+    background: var(--panel-2);
+  }
+
+  .callout {
+    position: absolute; transform: translate(-50%, -50%);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; line-height: 1; white-space: nowrap;
+    padding: 4px 7px; border-radius: 2px;
+    background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    pointer-events: none; opacity: 0; transition: opacity .18s ease;
+  }
+  .callout.on { opacity: 1; }
+  .callout.k-belt { border-color: var(--accent); color: var(--accent); }
+  .callout.k-steel { border-color: var(--steel); color: var(--steel); }
+
+  .console {
+    display: grid; gap: 14px; grid-template-columns: 1fr;
+    border: 1px solid var(--line); border-top: none;
+    background: var(--panel); padding: 14px;
+  }
+  @media (min-width: 1200px) {
+    .console { grid-template-columns: minmax(0,1fr) auto; align-items: center; }
+  }
+
+  .scrub { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .scrub label {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+    white-space: nowrap; min-width: 8.5em;
+  }
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    flex: 1; min-width: 0; height: 22px; background: transparent; margin: 0;
+  }
+  input[type="range"]::-webkit-slider-runnable-track { height: 3px; background: var(--line); border-radius: 2px; }
+  input[type="range"]::-moz-range-track { height: 3px; background: var(--line); border-radius: 2px; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 15px; height: 15px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--panel); margin-top: -6px;
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 13px; height: 13px; border-radius: 50%; background: var(--accent);
+    border: 2px solid var(--panel); box-shadow: 0 0 0 1px var(--accent);
+  }
+  input[type="range"]:focus-visible { outline: 2px solid var(--steel); outline-offset: 3px; }
+
+  .btnrow { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+  button {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 7px 12px; cursor: pointer;
+    transition: background .12s ease, border-color .12s ease;
+  }
+  button:hover { border-color: var(--muted); }
+  button:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.primary:hover { filter: brightness(1.06); }
+
+  .seg { display: inline-flex; flex-wrap: wrap; max-width: 100%; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
+  .standfirst + .standfirst { margin-top: 10px; }
+  .standfirst a, .prose a { color: var(--steel); }
+  .lower + .lower { margin-top: 44px; padding-top: 30px; border-top: 1px solid var(--line); }
+  .lower > section { min-width: 0; }
+  table.spec td.wrap { white-space: normal; text-align: right; }
+  .ok   { color: var(--steel); font-weight: 600; }
+  .bad  { color: var(--accent); font-weight: 600; }
+  .bom h3 {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 13px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--steel); margin: 16px 0 6px;
+  }
+  .bom ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .bom li label {
+    display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; align-items: start;
+    padding: 7px 8px; border-top: 1px solid var(--line-soft); font-size: 14px; cursor: pointer;
+  }
+  .bom li label:hover { background: var(--panel-2); }
+  .bom input { accent-color: var(--accent); width: 15px; height: 15px; margin: 3px 0 0; }
+  .bom input:checked + span { color: var(--muted); }
+  .bom input:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
+  .seg button { border: none; border-right: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+  .seg button:last-child { border-right: none; }
+  .seg button[aria-pressed="true"] { background: var(--accent-dim); color: var(--accent); }
+
+  .toggle {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+    cursor: pointer; user-select: none;
+  }
+  .toggle input { accent-color: var(--accent); width: 15px; height: 15px; }
+
+  .modebar { display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; margin-bottom: 10px; }
+  .modebar .why { font-size: 13.5px; color: var(--muted); }
+
+  .readout {
+    border: 1px solid var(--line); border-top: none; border-radius: 0 0 3px 3px;
+    background: var(--panel-2); padding: 9px 14px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--ink);
+    overflow-x: auto; white-space: nowrap;
+  }
+  .readout .k { color: var(--muted); }
+  .readout .sep { color: var(--line); padding: 0 6px; }
+
+  .lower { display: grid; gap: 26px; margin-top: 34px; grid-template-columns: 1fr; }
+  @media (min-width: 880px) { .lower { grid-template-columns: 1.15fr 1fr; gap: 40px; } }
+
+  h2 {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  h2 + h2 { margin-top: 30px; }
+  .prose + h2, ol.steps + h2 { margin-top: 30px; }
+
+  ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  ol.steps button.step {
+    display: grid; grid-template-columns: 34px 1fr; gap: 12px; width: 100%;
+    text-transform: none; letter-spacing: 0; cursor: pointer;
+    background: none; border: none; padding: 0; text-align: left; font: inherit; color: inherit;
+  }
+  .stepno {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500;
+    color: var(--muted); padding-top: 11px; border-top: 1px solid transparent;
+  }
+  .stepbody { padding: 10px 10px 12px 0; border-top: 1px solid var(--line-soft); }
+  li.active .stepbody { border-top-color: var(--accent); }
+  li.active .stepno { color: var(--accent); border-top-color: var(--accent); }
+  .steph {
+    display: block; font-family: "Barlow Condensed", sans-serif; font-weight: 600;
+    font-size: 19px; letter-spacing: .01em; margin: 0 0 2px;
+  }
+  li.active .steph { color: var(--accent); }
+  .stept { display: block; margin: 0; color: var(--muted); font-size: 14.5px; }
+  ol.steps li:hover .stepbody { background: var(--panel-2); }
+  ol.steps button.step:focus-visible .stepbody { outline: 2px solid var(--steel); outline-offset: -2px; }
+
+  .prose p { margin: 0 0 12px; font-size: 14.5px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 600; }
+
+  table.spec { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.spec th, table.spec td { text-align: left; padding: 7px 0; border-bottom: 1px solid var(--line-soft); vertical-align: baseline; }
+  table.spec th { font-weight: 400; color: var(--muted); padding-right: 14px; }
+  table.spec td {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px;
+    font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right;
+  }
+  .note { margin: 14px 0 0; font-size: 13.5px; color: var(--muted); }
+  .note strong { color: var(--ink); font-weight: 600; }
+
+  .flag {
+    margin: 0 0 18px; padding: 12px 14px;
+    border: 1px solid var(--accent); border-left-width: 3px; border-radius: 2px;
+    background: var(--accent-dim); font-size: 14px;
+  }
+  .flag strong { font-weight: 600; }
+
+  footer {
+    margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line-soft);
+    font-size: 12.5px; color: var(--muted);
+  }
+  footer a { color: var(--steel); }
+
+  @media (prefers-reduced-motion: reduce) { .callout { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">ZIPY cart pole &#183; belt drive, cart encoder, second pendulum</p>
+    <h1>ZIPY, from the inside</h1>
+    <p class="standfirst">The belt is an open length, not a closed loop &#8212; both ends stop at the cart, wrapped once around a printed post. The cart closes the loop, and the far pulley sits on the rotary encoder's shaft, so the same belt that moves the cart also measures where it is. Drag to orbit; switch between threading the belt and driving the cart.</p>
+    <p class="standfirst">New in this version: the second pendulum, built around the parts you have &#8212; an AS5048A magnetic encoder and two 608 bearings &#8212; on ZIPY's own elbow, hub and links, now drawn from their STLs. Try <strong>Swing both</strong> and <strong>Fit the elbow</strong>, and see <a href="#second">the second pendulum</a>, what you need, and <a href="#status">where things stand</a> below.</p>
+  </header>
+
+  <p class="flag"><strong>Part swap:</strong> the far end here is <code>10_dc_motor_end_top_mount</code>, not <code>03_pulley_end_feet</code>. It is the only bracket in ZIPY's document with an encoder mount (&#216;21 boss hole, M3 on a &#216;31 circle). <code>03</code> has a solid printed stub axle and nowhere to put an encoder.</p>
+
+  <div class="modebar">
+    <div class="seg" role="group" aria-label="What to show">
+      <button type="button" id="mode-thread" aria-pressed="true">Thread the belt</button>
+      <button type="button" id="mode-drive" aria-pressed="false">Drive the cart</button>
+      <button type="button" id="mode-swing" aria-pressed="false">Swing the pole</button>
+      <button type="button" id="mode-fit" aria-pressed="false">Fit the pole</button>
+      <button type="button" id="mode-clamp" aria-pressed="false">Clamp the ends</button>
+      <button type="button" id="mode-dswing" aria-pressed="false">Swing both</button>
+      <button type="button" id="mode-elbow" aria-pressed="false">Fit the elbow</button>
+    </div>
+    <span class="why" id="modewhy">Feeding each end into its slot and round its post.</span>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="loading" id="loading">building the rig&#8230;</div>
+    <div class="hint">drag &#8226; orbit &nbsp;/&nbsp; scroll &#8226; zoom</div>
+  </div>
+
+  <div class="console">
+    <div class="scrub">
+      <label for="progress" id="scrublabel">Thread</label>
+      <input type="range" id="progress" min="0" max="1000" value="1000" aria-label="Threading progress">
+      <button id="play" class="primary" type="button">Replay</button>
+    </div>
+    <div class="btnrow">
+      <div class="seg" role="group" aria-label="Printed parts display">
+        <button type="button" id="m-solid" aria-pressed="false">Solid</button>
+        <button type="button" id="m-ghost" aria-pressed="true">Ghost</button>
+        <button type="button" id="m-cut" aria-pressed="false">Cut away</button>
+      </div>
+      <div class="seg" role="group" aria-label="Camera">
+        <button type="button" id="v-anchor" aria-pressed="false">Post</button>
+        <button type="button" id="v-cart" aria-pressed="true">Cart</button>
+        <button type="button" id="v-mot" aria-pressed="false">Motor end</button>
+        <button type="button" id="v-enc" aria-pressed="false">Encoder end</button>
+        <button type="button" id="v-rig" aria-pressed="false">Whole rig</button>
+        <button type="button" id="v-pend" aria-pressed="false">Pendulum</button>
+        <button type="button" id="v-elbow" aria-pressed="false">Elbow</button>
+      </div>
+      <div class="seg" role="group" aria-label="Elbow design">
+        <button type="button" id="r-zipy" aria-pressed="true">ZIPY elbow + cartridge</button>
+        <button type="button" id="r-block" aria-pressed="false">One-piece block</button>
+      </div>
+      <label class="toggle"><input type="checkbox" id="labels" checked> Callouts</label>
+      <label class="toggle"><input type="checkbox" id="fix"> Fixings</label>
+    </div>
+  </div>
+
+  <div class="readout" id="readout"></div>
+
+  <div class="lower">
+    <section>
+      <h2>Fitting it, in order</h2>
+      <ol class="steps" id="steps">
+        <li data-p="0.02">
+          <button class="step" type="button">
+            <span class="stepno">01</span>
+            <span class="stepbody">
+              <span class="steph">Lay the belt round both pulleys</span>
+              <span class="stept">Over the 20T on the motor, back under the cart through its corridor, round the 20T on the encoder shaft, and out to the cart's other end face. Nothing is anchored yet &#8212; both ends are loose at the cart.</span>
+            </span>
+          </button>
+        </li>
+        <li data-p="0.30">
+          <button class="step" type="button">
+            <span class="stepno">02</span>
+            <span class="stepbody">
+              <span class="steph">Press the first end into its slot</span>
+              <span class="stept">The post, the ring wall and the slot walls are open-topped 9&#8239;mm prisms &#8212; there is no roof. So you press the belt down into the 2.15&#8239;mm groove from above rather than threading it in endwise. Teeth face the rail.</span>
+            </span>
+          </button>
+        </li>
+        <li data-p="0.50">
+          <button class="step" type="button">
+            <span class="stepno">03</span>
+            <span class="stepbody">
+              <span class="steph">Wrap it once round the post</span>
+              <span class="stept">The gap around the &#216;8&#8239;mm post is 1.7&#8239;mm &#8212; one belt thickness. Pre-curl the end round an M8 bolt first and it drops in. Walk it round, then trim flush: about 36&#8239;mm of belt disappears into each anchor.</span>
+            </span>
+          </button>
+        </li>
+        <li data-p="1.00">
+          <button class="step" type="button">
+            <span class="stepno">04</span>
+            <span class="stepbody">
+              <span class="steph">Pull taut, anchor the second end</span>
+              <span class="stept">A toothed belt with no preload does nothing &#8212; the teeth lift straight out and the pulley spins underneath. Pull it taut, anchor the second end, then set the final tension by sliding the brackets apart and bolting them down.</span>
+            </span>
+          </button>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Why an open belt still drives it</h2>
+      <div class="prose">
+        <p>Trace the strand in <strong>Drive the cart</strong>. From the post at one end of the cart it runs to the motor pulley, wraps it, comes back through the cart's own corridor, wraps the encoder pulley, and returns to the post at the other end. That is a closed loop that happens to pass <em>through</em> the cart instead of past it.</p>
+        <p>So turning the motor one way shortens one anchored run and pays out the other by exactly as much. The cart has nowhere to go but along. No dead band, and no slip, because the belt is captured mechanically at the cart rather than gripped by friction.</p>
+        <p>Both pulleys here are 20T, so the return run is <em>parallel</em> to the rail rather than converging the way it would with a mismatched pair. It sits 6.8&#8239;mm off the rail's centre line at every cart position, with 8.5&#8239;mm to spare inside the corridor.</p>
+        <p><strong>Why the encoder belongs at the far end, not on the motor.</strong> A 37&#8239;mm gearbox has a degree or two of backlash. On the motor shaft that slop would sit inside your position measurement. Out here it is outside the measurement entirely &#8212; the encoder reads the belt, and the belt is bolted to the cart, so you read true cart position whatever the gearbox does.</p>
+        <p><strong>Holding the tension.</strong> Belt tension pulls both end brackets inward, so both have to be bolted to the rail. Switch to <strong>Clamp the ends</strong> above and scrub through it &#8212; there is nothing to print and nothing to drill, because the hold-down is already designed into both brackets.</p>
+      </div>
+
+      <h2>Clamping the two ends</h2>
+      <div class="prose">
+        <p>None of the spare printed parts helps here. <code>09_edge_clip</code>, <code>08_slot_test_coupon</code>, <code>03_pulley_end_feet</code> and <code>07_limit_switch_mount_b</code> have no bolt holes in them at all &#8212; the only hole in that set belongs to <code>11_dc_motor_end_no_feet</code>, and that is its own hold-down, not a clamp. What you need is two bolts and two T-nuts, about &pound;3.</p>
+        <ol class="steps" id="clampsteps">
+        <li data-c="0.00">
+          <button class="step" type="button">
+            <span class="stepno">01</span>
+            <span class="stepbody">
+              <span class="steph">Get the nuts in</span>
+              <span class="stept">The T-nut is 6 wide, 8.6 long and 3 thick. The slot mouth is 6.0&#8239;mm and the cavity behind it 9.0, so the nut only passes the mouth <em>edge-on</em>. At the encoder end, drop it into the top slot that way. At the motor end you cannot &#8212; a nut dropped into the bottom slot just falls straight out again &#8212; so slide that one in from the open end of the rail instead, already turned the right way.</span>
+            </span>
+          </button>
+        </li>
+        <li data-c="0.30">
+          <button class="step" type="button">
+            <span class="stepno">02</span>
+            <span class="stepbody">
+              <span class="steph">Turn the top nut 90&#176;</span>
+              <span class="stept">Now its 8.6&#8239;mm length lies across the 6&#8239;mm mouth and cannot come back out: it is trapped under the two lips, and those lips are what actually take the belt load. Leave it unturned and the whole thing pulls straight out under tension.</span>
+            </span>
+          </button>
+        </li>
+        <li data-c="0.48">
+          <button class="step" type="button">
+            <span class="stepno">03</span>
+            <span class="stepbody">
+              <span class="steph">Slide the motor end out to tension</span>
+              <span class="stept">This is your tensioner, and the adjustment lives in the <em>rail</em>, not in the brackets. Both hold-downs are plain <strong>&#216;5.5&#8239;mm round holes</strong> &#8212; neither bracket has a slot in it. What slides is the T-nut: back the bolt off half a turn, the nut runs free in the rail slot, and bracket, bolt and nut move along together. Push the end outward until the belt is taut, then tighten. One millimetre of bracket travel takes up two millimetres of belt, because both runs shorten at once.</span>
+            </span>
+          </button>
+        </li>
+        <li data-c="0.72">
+          <button class="step" type="button">
+            <span class="stepno">04</span>
+            <span class="stepbody">
+              <span class="steph">Run both bolts home</span>
+              <span class="stept">The encoder bolt goes <strong>down</strong> from on top of the slab. The motor bolt goes <strong>up from below</strong>, head recessed flush in the 10 &#215; 5&#8239;mm channel in the feet &#8212; so do that one before the rig goes down flat on the table, or hang the rail over the edge. Each bolt pulls its nut hard against the slot lips and pinches the bracket to the rail.</span>
+            </span>
+          </button>
+        </li>
+      </ol>
+        <p><strong>Bolt length matters more than you would think.</strong> You are clamping 3&#8239;mm of bracket plus the 1.5&#8239;mm slot mouth plus the nut. With a 3&#8239;mm T-nut use <strong>M5&#8239;&#215;&#8239;8</strong>; with a 6&#8239;mm drop-in nut, <strong>M5&#8239;&#215;&#8239;10 or 12</strong>. Too long is worse than too short: it bottoms out on the back of the slot, feels tight, and clamps nothing at all.</p>
+        <p><strong>If you have nothing to hand today,</strong> two or three zip ties cinched hard around the rail against each bracket's <em>inboard</em> face is a genuine positive stop, and will take far more than the 20&#8239;N or so the belt pulls with. A plain M4 or M5 hex nut slid into a side slot from the open end of the rail, with a bolt run into it, does the same job and is reusable.</p>
+        <p><strong>Worth checking if the swing-up misbehaves.</strong> If a bracket creeps inward the belt goes slack, and a slack toothed belt lets the pulley spin underneath it. Swing-up reverses the cart twice a second at full duty, which is by far the hardest this belt has been worked &#8212; so if it works and then degrades over a few minutes, look here before you touch the gains.</p>
+      </div>
+
+      <h2>Bolting the motor and encoder to their brackets</h2>
+      <div class="prose">
+        <p>Clamping the brackets to the rail is only half of it. The motor and the encoder each bolt to their bracket's top plate, and both plates carry the same two features, measured off the STLs:</p>
+        <p><strong>A spigot hole in the middle</strong> &#8212; &#216;12.5 at the motor end, &#216;21.0 at the encoder end. The device's raised boss drops into it, and <em>this</em> is what takes the sideways load from the belt. The screws only stop it turning and falling out.</p>
+        <p><strong>A ring of &#216;3.6&#8239;mm M3 clearance holes on a &#216;31 circle</strong> &#8212; six of them at the motor end, every 60&#176;, and four at the encoder end at &#177;60&#176; and &#177;120&#176;. Use whichever ones line up with the threaded holes in your device's face. If your encoder has the usual three at 120&#176; spacing, two of the three will land; that is plenty, and you should not try to force the third.</p>
+        <p>Both plates are <strong>4.0&#8239;mm thick</strong>, so <strong>M3 &#215; 8</strong> is the length to buy: 4 mm of plate leaves 4 mm of thread engagement. M3 &#215; 10 only if you have checked your threads go deeper than 6 mm &#8212; on a 37&#8239;mm gearmotor they often do not, and a screw that bottoms out feels tight while clamping nothing.</p>
+        <p class="note"><strong>The encoder spigot is a loose fit on purpose.</strong> &#216;21.0 around a &#216;20 boss leaves half a millimetre of play all round, so the encoder can sit off-centre. Before you tighten its screws, sight along the belt and push the encoder until its pulley lines up with the motor pulley &#8212; otherwise the belt runs at an angle and climbs a flange.</p>
+        <p class="note"><strong>None of this stops a pulley slipping on its shaft.</strong> Bolting the encoder down rigidly and then finding the cart moves while the count does not means the pulley's grub screw is not biting. It wants to land on the shaft's flat, and if the shaft is plain round, file one.</p>
+      </div>
+
+      <h2>Fitting the pole to the encoder</h2>
+      <div class="prose">
+        <p>Switch to <strong>Fit the pole</strong> above and drag the slider to put it together. The order is:</p>
+        <p><strong>1.</strong> Press the M3 nuts into the hub's hex pockets and the slot beside its collar. A drop of superglue stops them falling out while you work.</p>
+        <p><strong>2.</strong> Encoder into the cart's plate &#8212; body <em>inboard</em>, toward the rail, boss pushed out through the &#216;21 hole, shaft pointing away from the rail. Turn it so the cable exits upward, then three or four M3 &#215; 8 through the plate into its threaded face.</p>
+        <p><strong>3.</strong> Bolt the pole to the hub first, off the machine: 2 &#215; M3 &#215; 16 through link 1's lower holes, heads on the link side. Then link 2 onto link 1's top end, 2 &#215; M3 &#215; 12 through the holes at 208 and 226 mm.</p>
+        <p><strong>4.</strong> Slide the whole hub-and-pole assembly onto the 6 mm shaft, leaving about <strong>1 mm between the collar and the encoder's boss</strong>. A business card is the right spacer.</p>
+        <p><strong>5. This is the step that actually holds it.</strong> Run the M3 set screw up through the hub's short end face into that captive nut. It presses on the shaft and clamps the hub to it. <em>Sliding the hub on is not enough &#8212; without this screw the pole spins freely on the shaft and the encoder reads nothing.</em> If the shaft is plain round, file a small flat where the screw tip lands first, or it can creep round over time and your angle zero drifts.</p>
+        <p>The bore runs right through the hub, so you can see the shaft end through it and check how far on you are. It stops 3 mm short of the pole face &#8212; the shaft never touches the link, and the hub does all the clamping.</p>
+      </div>
+
+      <h2>Measured off the parts</h2>
+      <table class="spec">
+        <tbody>
+          <tr><th scope="row">Slot width</th><td>2.12 mm</td></tr>
+          <tr><th scope="row">Slot offset from rail centre</th><td>11.50 mm</td></tr>
+          <tr><th scope="row">Post diameter</th><td>&#216; 7.96 mm</td></tr>
+          <tr><th scope="row">Post centres, in from each end</th><td>13.00 mm</td></tr>
+          <tr><th scope="row">Ring around the post</th><td>1.70 mm</td></tr>
+          <tr><th scope="row">Post height, open topped</th><td>9.00 mm</td></tr>
+          <tr><th scope="row">Divider between pockets</th><td>0.60 mm</td></tr>
+          <tr><th scope="row">Return-run corridor</th><td>18.00 mm</td></tr>
+          <tr><th scope="row">Both pulleys</th><td>20T GT2, 6 mm bore</td></tr>
+          <tr><th scope="row">Motor bracket hold-down</th><td>M5, &#216; 5.5 hole, centred</td></tr>
+          <tr><th scope="row">Encoder bracket hold-down</th><td>M5, &#216; 5.5 hole</td></tr>
+          <tr><th scope="row">Motor face: spigot / screws</th><td>&#216; 12.5 / 6 &#215; M3 on &#216; 31</td></tr>
+          <tr><th scope="row">Encoder face: spigot / screws</th><td>&#216; 21.0 / 4 &#215; M3 on &#216; 31</td></tr>
+          <tr><th scope="row">Both mounting plates</th><td>4.0 mm thick</td></tr>
+          <tr><th scope="row">Motor boss hole / screws</th><td>&#216; 12.5 / 2 &#215; M3 at 31</td></tr>
+          <tr><th scope="row">Encoder boss hole / circle</th><td>&#216; 21.0 / M3 on &#216; 31</td></tr>
+          <tr><th scope="row">Cart travel per motor turn</th><td>40.0 mm</td></tr>
+          <tr><th scope="row">Encoder resolution, 600 p/r &#215; 4</th><td>0.0167 mm/count</td></tr>
+          <tr><th scope="row">Pole as fitted, swinging length</th><td>218 mm (measured)</td></tr>
+          <tr><th scope="row">Link 1, pivot to tip</th><td>230 mm</td></tr>
+          <tr><th scope="row">Elbow bearings</th><td>2 &#215; 608, 8 &#215; 22 &#215; 7</td></tr>
+          <tr><th scope="row">Elbow shaft</th><td>&#216; 8 &#215; 50 (ZIPY) / 40 (block)</td></tr>
+          <tr><th scope="row">Elbow axis from base pivot</th><td>250 (ZIPY) / 248 mm</td></tr>
+          <tr><th scope="row">ZIPY elbow encoder face</th><td>&#216; 21 + 6 &#215; M3 on &#216; 31</td></tr>
+          <tr><th scope="row">Elbow sensor</th><td>AS5048A, 14-bit, PWM ~1 kHz</td></tr>
+          <tr><th scope="row">Magnet (datasheet test)</th><td>&#216; 8 &#215; 3 at 2 mm</td></tr>
+          <tr><th scope="row">Link 2 plane, outboard of link 1</th><td>66 (ZIPY) / 16.5 mm</td></tr>
+          <tr><th scope="row">Links 1 and 2</th><td>30 &#215; 246 &#215; 5, M3 at 36/54</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><strong>Belt height is the one thing to get right.</strong> The cart's slot spans 4&#8211;13&#8239;mm above the rail's top face, and the encoder bracket's cavity spans 4&#8211;20&#8239;mm. Slide both pulleys along their shafts until the middle of the belt sits about 9&#8211;10&#8239;mm above the rail's top face.</p>
+    </section>
+  </div>
+
+  <div class="lower">
+    <section id="second">
+      <h2>The second pendulum, with your parts</h2>
+      <div class="prose">
+        <p>ZIPY's own elbow, <code>zipy_dp_elbow</code>, is a joggled bracket. One plate bolts to link&#8239;1's top two holes. The other, about 37&#8239;mm further out, is an encoder face: a &#216;21 hole and six M3 slots on a &#216;31 circle, the same pattern as your cart-encoder bracket. ZIPY meant a third optical encoder to go there.</p>
+        <p>Your two <strong>608 bearings</strong> (8&#8239;&#215;&#8239;22&#8239;&#215;&#8239;7&#8239;mm) need a &#216;22 seat 7&#8239;mm deep, so they go in a small printed <strong>cartridge</strong> that bolts in where the encoder would. The shaft runs out through the &#216;21 hole to link&#8239;2 on a reprinted <code>zipy_dp_hub</code> with an 8&#8239;mm bore. The magnet and the <strong>AS5048A</strong> sit on the inner end, in the space the encoder body would have used. The sensor reads link&#8239;2's angle <em>relative to link&#8239;1</em>; the firmware adds link&#8239;1's angle.</p>
+        <p>If you have not printed ZIPY's elbow yet, the <strong>one-piece block</strong> does the same job in one part. Switch between them with the buttons under the model. Use <strong>Fit the elbow</strong> to take either apart, or click a step below.</p>
+      </div>
+      <ol class="steps" id="elbowsteps">
+        <li data-e="1.00">
+          <button class="step" type="button">
+            <span class="stepno">01</span>
+            <span class="stepbody">
+              <span class="steph">Take the seals out of both bearings</span>
+              <span class="stept">Your 608s are 2RS: a rubber seal on each face rubs the inner ring. Prise each seal out with a pin, flush the grease with isopropyl alcohol, and add one drop of light oil. A clean bearing coasts for several seconds when flicked. In the simulation the elbow holds with the seals out and falls with them in.</span>
+            </span>
+          </button>
+        </li>
+        <li data-e="0.86">
+          <button class="step" type="button">
+            <span class="stepno">02</span>
+            <span class="stepbody">
+              <span class="steph">Bolt ZIPY's elbow to link 1</span>
+              <span class="stept">2 &#215; M3 &#215; 12 through link&#8239;1's top holes (208 and 226&#8239;mm from its end). Heads on link&#8239;1's inboard face, nuts in the elbow's hex pockets. A 16 would stick 5&#8239;mm out of the elbow. The elbow axis lands 20&#8239;mm past link&#8239;1's end, 250&#8239;mm from the base pivot.</span>
+            </span>
+          </button>
+        </li>
+        <li data-e="0.72">
+          <button class="step" type="button">
+            <span class="stepno">03</span>
+            <span class="stepbody">
+              <span class="steph">Press both bearings into the cartridge</span>
+              <span class="stept">From its open end: the first one down to the flange, then the loose 6&#8239;mm outer spacer ring, then the second bearing, flush with the end. The &#216;22 seat is drawn at 22.0, which prints as a snug press on most printers; push on the outer ring only. A matching 6&#8239;mm inner spacer goes between the inner rings when the shaft goes in, so clamping never presses on the balls.</span>
+            </span>
+          </button>
+        </li>
+        <li data-e="0.58">
+          <button class="step" type="button">
+            <span class="stepno">04</span>
+            <span class="stepbody">
+              <span class="steph">Cartridge into the elbow's encoder face</span>
+              <span class="stept">Its &#216;20 boss goes into the &#216;21 hole from the joggle side and the flange sits on the plate's inner face. 3&#8211;6 &#215; M3 &#215; 8 from outside through the slots, threaded straight into the flange (&#216;2.6 pilot holes, or M3 heat-set inserts). There is no room for nuts: on that circle they would sit inside the cartridge wall.</span>
+            </span>
+          </button>
+        </li>
+        <li data-e="0.44">
+          <button class="step" type="button">
+            <span class="stepno">05</span>
+            <span class="stepbody">
+              <span class="steph">Shaft in from outside</span>
+              <span class="stept">An 8&#8239;&#215;&#8239;50&#8239;mm stainless dowel pin or smooth rod, through the printed sleeve, both bearings and the inner spacer. It must slide in by hand: an h6 or h8 pin, not an m6 press-fit one. Its outer end sits flush with the hub's face. The sleeve touches only the inner ring, so clamping never drags on the outer ring.</span>
+            </span>
+          </button>
+        </li>
+        <li data-e="0.30">
+          <button class="step" type="button">
+            <span class="stepno">06</span>
+            <span class="stepbody">
+              <span class="steph">Link 2 and its hub on the outer end</span>
+              <span class="stept"><code>zipy_dp_hub_8mm</code> (ZIPY's hub with the bore opened to 8.3&#8239;mm, in <code>STL Files</code>), collar toward the elbow. File a flat where its M3 set screw lands. Link&#8239;2 bolts to it with 2 &#215; M3 &#215; 16 through its holes at 36 and 54&#8239;mm, exactly as link&#8239;1 sits on the base hub. Exactly 16: an 18 catches the cartridge's screw heads as link&#8239;2 turns.</span>
+            </span>
+          </button>
+        </li>
+        <li data-e="0.14">
+          <button class="step" type="button">
+            <span class="stepno">07</span>
+            <span class="stepbody">
+              <span class="steph">Magnet cap, then the AS5048A</span>
+              <span class="stept">Glue the diametric magnet into the cap, centred to within 0.25&#8239;mm. Push the cap onto the shaft's inner end until it seats on the bearing's inner ring, and glue it there; the firmware sets the zero, so the magnet's rotation does not matter. The AS5048A's chip faces the magnet, centred, about 1.5&#8239;mm away (the datasheet tests at 2&#8239;mm). Measure your board first: it is drawn as 25&#8239;&#215;&#8239;25&#8239;mm.</span>
+            </span>
+          </button>
+        </li>
+        <li data-e="0.00">
+          <button class="step" type="button">
+            <span class="stepno">08</span>
+            <span class="stepbody">
+              <span class="steph">Run the cable down link 1</span>
+              <span class="stept">Tie it along link&#8239;1's inboard face and leave a loose loop at the base joint. For balancing that is enough. For swing-up, where link&#8239;1 can go all the way round, use a slip ring or a radio link.</span>
+            </span>
+          </button>
+        </li>
+      </ol>
+
+      <h2>What you need</h2>
+      <div class="prose">
+        <p>Tick things off as you get them. The ticks are saved in this browser only.</p>
+      </div>
+      <div class="bom" id="bom">
+        <h3>You have</h3>
+        <ul>
+          <li><label><input type="checkbox" id="bom-as5048" checked> <span><strong>AS5048A module</strong> &#8212; the elbow sensor</span></label></li>
+          <li><label><input type="checkbox" id="bom-608" checked> <span><strong>608 2RS bearings</strong> &#8212; two for the elbow, seals removed</span></label></li>
+          <li><label><input type="checkbox" id="bom-pulleys" checked> <span><strong>Two matching 20T pulleys and the belt</strong> &#8212; as on the rig now</span></label></li>
+          <li><label><input type="checkbox" id="bom-zipystl" checked> <span><strong>ZIPY's elbow, hub and link STLs</strong> &#8212; in <code>STL Files</code></span></label></li>
+        </ul>
+        <h3>To buy</h3>
+        <ul>
+          <li><label><input type="checkbox" id="bom-shaft"> <span><strong>8 mm dowel pin, 50 mm long, stainless, h6 or h8</strong> (40 for the one-piece block) &#8212; or 8 mm smooth rod cut to 50. It must slide into a 608 by hand; an m6 dowel is a press fit.</span></label></li>
+          <li><label><input type="checkbox" id="bom-magnet"> <span><strong>Diametric magnet, &#216;6&#215;2.5 or &#216;8&#215;3</strong> &#8212; check the AS5048A's box first. Ordinary disc magnets are axial and will not work.</span></label></li>
+          <li><label><input type="checkbox" id="bom-m3"> <span><strong>M3 screws and nuts</strong> &#8212; 2 &#215; M3&#215;12 (elbow to link 1), 6 &#215; M3&#215;8 (cartridge), 2 &#215; M3&#215;16 exactly (link 2 to its hub), 1 &#215; M3&#215;12&#8211;16 (hub set screw), 5 nuts. One M3 assortment box covers it.</span></label></li>
+          <li><label><input type="checkbox" id="bom-m2"> <span><strong>M2 or M2.5 screws</strong> for the sensor board, or foam tape</span></label></li>
+          <li><label><input type="checkbox" id="bom-cable"> <span><strong>About 1 m of flexible 6-core cable</strong> &#8212; enough for SPI, which did better than PWM in the simulation; shielded if you can</span></label></li>
+          <li><label><input type="checkbox" id="bom-oil"> <span><strong>Light oil, isopropyl alcohol, superglue or epoxy</strong></span></label></li>
+          <li><label><input type="checkbox" id="bom-shifter"> <span><strong>Logic-level shifter</strong> &#8212; only if your board cannot run at 3.3 V</span></label></li>
+        </ul>
+        <h3>To print</h3>
+        <ul>
+          <li><label><input type="checkbox" id="bom-p-elbow"> <span><strong>zipy_dp_elbow</strong> &#8212; or the one-piece block instead</span></label></li>
+          <li><label><input type="checkbox" id="bom-p-cart"> <span><strong>Bearing cartridge</strong>, its sleeve and the two 6&#8239;mm spacers &#8212; ready in <code>STL Files</code></span></label></li>
+          <li><label><input type="checkbox" id="bom-p-hub"> <span><strong>Link-2 hub</strong> &#8212; <code>zipy_dp_hub_8mm</code>, ready in <code>STL Files</code></span></label></li>
+          <li><label><input type="checkbox" id="bom-p-cap"> <span><strong>Magnet cap and sensor bracket</strong></span></label></li>
+          <li><label><input type="checkbox" id="bom-p-links"> <span><strong>Links 1 and 2</strong>, if not printed</span></label></li>
+        </ul>
+        <h3>Tools</h3>
+        <ul>
+          <li><label><input type="checkbox" id="bom-t-cal"> <span>Calipers, a small file, a pin, a soldering iron, a multimeter</span></label></li>
+        </ul>
+        <h3>Before the double can balance</h3>
+        <ul>
+          <li><label><input type="checkbox" id="bom-r-edge"> <span><strong>Rig at a table's edge</strong> &#8212; the double hangs about 0.5&#8239;m below the pivot</span></label></li>
+          <li><label><input type="checkbox" id="bom-r-speed"> <span><strong>More cart speed, later</strong> &#8212; at 0.32&#8239;m/s the double balances only from a careful start within about 3&#176;; at 0.6&#8239;m/s it shrugs off shoves. A 40T GT2 motor pulley or a faster gearmotor gets there.</span></label></li>
+          <li><label><input type="checkbox" id="bom-r-fw"> <span><strong>Double-pendulum firmware</strong> &#8212; reads the AS5048A and allows for the motor's lag. To be written.</span></label></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Wiring the AS5048A</h2>
+      <div class="prose">
+        <p><strong>Run it from 3.3&#8239;V.</strong> The Teensy's pins are not 5&#8239;V tolerant, and the board's outputs swing to whatever it is powered from. Many of these boards default to 5&#8239;V, so check yours for a 3.3&#8239;V jumper or pad before connecting a signal wire.</p>
+      </div>
+      <table class="spec">
+        <tbody>
+          <tr><th scope="row">PWM: 3 wires (3V3, GND, PWM)</th><td class="wrap">Teensy pin 3 &#183; ~1&#8239;kHz, one new angle per ms &#183; start here</td></tr>
+          <tr><th scope="row">SPI: 6 wires (3V3, GND, CS, CLK, MISO, MOSI)</th><td class="wrap">pins 10, 13, 12, 11 &#183; full 14-bit, read every loop</td></tr>
+          <tr><th scope="row">Already in use</th><td class="wrap">pole 1/2 (fixed) &#183; motor 5/6 &#183; cart 8/9</td></tr>
+        </tbody>
+      </table>
+      <p class="note"><strong>Why PWM first:</strong> three wires are the easiest to get through a loose loop or a slip ring, and a 1&#8239;kHz update is fast enough at a 500&#8239;Hz control rate. Move to SPI if the readings prove noisy or too slow.</p>
+
+      <h2>What the numbers say</h2>
+      <div class="prose">
+        <p>From a simulation built out of ZIPY's STLs and your bought parts, with the motor's measured 60&#8239;ms response. The same weight model predicts your pole's free swing at 0.766&#8239;s; the rig measured 0.765&#8239;s.</p>
+      </div>
+      <table class="spec">
+        <tbody>
+          <tr><th scope="row">Weight on the pivot</th><td class="wrap">link&#8239;1 side 134&#8239;g &#183; link&#8239;2 side 91&#8239;g &#183; today's pole 63&#8239;g</td></tr>
+          <tr><th scope="row">How fast it falls</th><td class="wrap">9.9 /s &#183; bare links would be 12.6 /s &#183; your single pole 8.2 /s. Weight at the elbow <em>slows</em> the fall.</td></tr>
+          <tr><th scope="row">Controller</th><td class="wrap">must include the motor's lag, or it falls in 0.6&#8239;s</td></tr>
+          <tr><th scope="row">Cart speed, as it is (0.32&#8239;m/s)</th><td class="wrap"><span class="ok">holds</span> from a start within 3&#176; &#183; <span class="bad">falls</span> after a shove over 0.3&#8239;rad/s</td></tr>
+          <tr><th scope="row">With more speed (0.63&#8239;m/s: a 40T motor pulley)</th><td class="wrap"><span class="ok">holds</span> from 7.5&#176; &#183; shoves up to 0.65&#8239;rad/s</td></tr>
+          <tr><th scope="row">Print infill 60&#8211;100&#8239;%, or an aluminium shaft</th><td class="wrap">no real difference</td></tr>
+          <tr><th scope="row">608 elbow, seals out</th><td class="wrap"><span class="ok">holds</span></td></tr>
+          <tr><th scope="row">608 elbow, seals in</th><td class="wrap"><span class="bad">falls</span> even from a still start &#183; seal drag about 2&#8239;mN&#183;m</td></tr>
+          <tr><th scope="row">AS5048A over SPI instead of PWM</th><td class="wrap">a little better: shoves up to 0.77&#8239;rad/s at 0.63&#8239;m/s</td></tr>
+          <tr><th scope="row">Cable across the base joint</th><td class="wrap">loose loop <span class="ok">holds</span> &#183; small slip ring <span class="ok">holds</span> &#183; stiff slip ring <span class="bad">falls</span></td></tr>
+          <tr><th scope="row">Radio link instead</th><td class="wrap">2&#8211;5&#8239;ms delay <span class="ok">holds</span></td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="status">Where things stand</h2>
+      <table class="spec">
+        <tbody>
+          <tr><th scope="row">The pole as fitted</th><td class="wrap">swings like a 218&#8239;mm rod (free-swing test) &#8212; link&#8239;1 on its own, not link&#8239;1 + link&#8239;2</td></tr>
+          <tr><th scope="row">Firmware</th><td class="wrap">1.6 (v4.8), and ESN 1.1 for the network balance &#183; measures the pole live at each start &#183; not yet run</td></tr>
+          <tr><th scope="row">Swing-up so far</th><td class="wrap">1.2 reached the top but looped &#183; 1.3&#8211;1.5 stalled half way on a wrong pole length</td></tr>
+          <tr><th scope="row">Motor and pulleys</th><td class="wrap">60&#8239;ms response, 0.317&#8239;m/s top speed &#183; two matching 20T pulleys, as drawn</td></tr>
+          <tr><th scope="row">Drag going right</th><td class="wrap">the belt loads the encoder pulley's bearings &#183; outboard support bearing not yet designed</td></tr>
+          <tr><th scope="row">Cart travel</th><td class="wrap">homing says 616&#8239;mm; these notes say 460 &#183; check with a tape measure</td></tr>
+          <tr><th scope="row">ZIPY's pendulum parts</th><td class="wrap">elbow, hub, link 1 and link 2 measured from the STLs and drawn here as the real parts</td></tr>
+          <tr><th scope="row">Next for the double</th><td class="wrap">buy the shaft, screws and cable &#183; measure the AS5048A board &#183; STLs for the magnet cap and sensor bracket (hub, cartridge, spacers and sleeve done) &#183; balance by hand-start &#183; more cart speed &#183; then swing-up</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <footer>
+    Geometry is ZIPY's own, by Philip Zucker and Ben Wiener &#8212; <a href="https://hackaday.io/project/158289" target="_blank" rel="noopener">hackaday.io/project/158289</a>, Onshape tabs &#8220;Cart Encoder Locking&#8221;, &#8220;DC Motor End Feet&#8221; and &#8220;DC Motor End Top Mount&#8221;. Those three are the exported meshes, quantised to 0.0006&#8239;mm. The rail, pulleys, belt, motor body and encoder body are drawn to the dimensions measured from them; the belt path was checked to clear the post by 0.14&#8239;mm and stay inside both the pocket wall and the slot.
+    The hub, both links and <code>zipy_dp_elbow</code> are ZIPY's own STLs. The one-piece block, magnet cap and sensor bracket are new designs, drawn to the 608's 8&#8239;&#215;&#8239;22&#8239;&#215;&#8239;7 and an assumed 25&#8239;&#215;&#8239;25&#8239;mm AS5048A board; they are not STLs yet. These are: <code>zipy_dp_hub_8mm</code> (ZIPY's hub with only its bore opened to 8.3&#8239;mm), <code>zipy_dp_cartridge</code>, <code>zipy_dp_outer_spacer</code>, <code>zipy_dp_inner_spacer</code> and <code>zipy_dp_sleeve</code>.
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="rig_mesh.js"></script>
+<script src="pend_mesh.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // Millimetres throughout. x runs along the rail with the cart centred on 0 at
+  // mid travel, y is up with 0 at the cart's top face, z is across the rail.
+  var HALF = 19, POST_DX = 6, SLOT_Z = 11.5, RING_R = 4.83;
+  var BELT_W = 6, BELT_T = 1.38, BELT_Y = 4.5;
+  var RAIL_TOP = -4, RAIL_SIZE = 20, TABLE_Y = -32;
+  var MX = -290, IX = 290;              // pulley centres, 580 apart
+  var TIP1 = 6.11, TIP2 = 6.11;         // both pulleys are 20T
+  var R1 = TIP1 + BELT_T / 2, R2 = TIP2 + BELT_T / 2;   // belt centreline radii
+  var TRAVEL = 230;
+  var MM_PER_COUNT = Math.PI * 12.732 / 2400;   // 20T pitch dia, 600 p/r x4
+  var D2R = Math.PI / 180;
+
+  var stage = document.getElementById("stage");
+  var loading = document.getElementById("loading");
+  if (typeof THREE === "undefined") { loading.textContent = "3D library unavailable"; return; }
+
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.localClippingEnabled = true;
+  stage.appendChild(renderer.domElement);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(34, 16 / 9, 0.5, 6000);
+  camera.position.set(60, 55, 78);
+
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.target.set(0, 6, 4);
+  controls.minDistance = 16;
+  controls.maxDistance = 2200;
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x3a4046, 0.72));
+  var key = new THREE.DirectionalLight(0xffffff, 0.95); key.position.set(70, 130, 60); scene.add(key);
+  var fill = new THREE.DirectionalLight(0xffffff, 0.32); fill.position.set(-110, 50, -80); scene.add(fill);
+  var rim = new THREE.DirectionalLight(0xffffff, 0.2); rim.position.set(-20, -70, 50); scene.add(rim);
+
+  // ---- materials ---------------------------------------------------------
+  var printedMat = new THREE.MeshStandardMaterial({
+    color: 0xe4ded2, metalness: 0.02, roughness: 0.72,
+    transparent: true, opacity: 0.34, depthWrite: false, side: THREE.DoubleSide
+  });
+  var alumMat = new THREE.MeshStandardMaterial({ color: 0x9aa3aa, metalness: 0.55, roughness: 0.42 });
+  var steelMat = new THREE.MeshStandardMaterial({ color: 0x7f878d, metalness: 0.7, roughness: 0.3 });
+  var boughtMat = new THREE.MeshStandardMaterial({
+    color: 0x43494e, metalness: 0.45, roughness: 0.55, transparent: true, opacity: 0.82
+  });
+  var beltMat = new THREE.MeshStandardMaterial({ color: 0x24282c, metalness: 0.08, roughness: 0.82, side: THREE.DoubleSide });
+  var clipPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 5.2);
+
+  // ---- table -------------------------------------------------------------
+  // The rig sits at the table's edge with the pendulum side overhanging: the
+  // pole swings up from hanging, and the double hangs about 0.5 m below the
+  // pivot. The front edge is at z -30, between the rail and the pole's plane.
+  var table = new THREE.Mesh(
+    new THREE.BoxGeometry(900, 18, 230),
+    new THREE.MeshStandardMaterial({ color: 0x8e948f, roughness: 0.95, metalness: 0, transparent: true, opacity: 0.5 })
+  );
+  table.position.set(10, TABLE_Y - 9, 85);
+  scene.add(table);
+
+  // ---- rail --------------------------------------------------------------
+  // 20 x 20 with a T-slot in each face: 6 mm mouth opening into a 9 mm cavity,
+  // which is what a T-nut catches on.
+  var SLOT_MOUTH = 6, SLOT_LIP = 1.5, CAV_W = 9.0, CAV_D = 5.0;
+  function railShape() {
+    var h = RAIL_SIZE / 2, c = 2.2;
+    var s = new THREE.Shape();
+    function face(ax, ay, bx, by) {
+      var mx = (ax + bx) / 2, my = (ay + by) / 2;
+      var dx = bx - ax, dy = by - ay, len = Math.sqrt(dx * dx + dy * dy);
+      var ux = dx / len, uy = dy / len, nx = -uy, ny = ux;
+      function pt(along, depth) { s.lineTo(mx + ux * along + nx * depth, my + uy * along + ny * depth); }
+      pt(-SLOT_MOUTH / 2, 0);
+      pt(-SLOT_MOUTH / 2, SLOT_LIP);
+      pt(-CAV_W / 2, SLOT_LIP);
+      pt(-CAV_W / 2, CAV_D);
+      pt(CAV_W / 2, CAV_D);
+      pt(CAV_W / 2, SLOT_LIP);
+      pt(SLOT_MOUTH / 2, SLOT_LIP);
+      pt(SLOT_MOUTH / 2, 0);
+      s.lineTo(bx, by);
+    }
+    s.moveTo(-h + c, -h);
+    face(-h + c, -h, h - c, -h); s.lineTo(h, -h + c);
+    face(h, -h + c, h, h - c);   s.lineTo(h - c, h);
+    face(h - c, h, -h + c, h);   s.lineTo(-h, h - c);
+    face(-h, h - c, -h, -h + c); s.closePath();
+    return s;
+  }
+  var railGeo = new THREE.ExtrudeGeometry(railShape(), { depth: 700, bevelEnabled: false, curveSegments: 1 });
+  railGeo.rotateY(Math.PI / 2);
+  railGeo.translate(-330, RAIL_TOP - RAIL_SIZE / 2, 0);
+  scene.add(new THREE.Mesh(railGeo, alumMat));
+
+  // ---- pulleys -----------------------------------------------------------
+  function pulley(teeth, rTip) {
+    var g = new THREE.Group();
+    var rRoot = rTip - 0.76, per = 6, steps = teeth * per;
+    var s = new THREE.Shape();
+    for (var i = 0; i <= steps; i++) {
+      var r = (i % per) < 3 ? rTip : rRoot, a = i / steps * Math.PI * 2;
+      if (i === 0) { s.moveTo(Math.cos(a) * r, Math.sin(a) * r); }
+      else { s.lineTo(Math.cos(a) * r, Math.sin(a) * r); }
+    }
+    var body = new THREE.ExtrudeGeometry(s, { depth: 7.5, bevelEnabled: false });
+    body.rotateX(-Math.PI / 2);
+    body.translate(0, BELT_Y - 3.75, 0);
+    g.add(new THREE.Mesh(body, steelMat));
+    [BELT_Y + 4.45, BELT_Y - 4.45].forEach(function (y) {
+      var f = new THREE.Mesh(new THREE.CylinderGeometry(rTip + 1.8, rTip + 1.8, 1.4, 56), steelMat);
+      f.position.y = y; g.add(f);
+    });
+    return g;
+  }
+  // Each end lives in its own group so the motor end can slide along the rail:
+  // that slide is the belt tensioner, and 1 mm of it takes up 2 mm of belt.
+  var mEndG = new THREE.Group(); scene.add(mEndG);
+  var iEndG = new THREE.Group(); scene.add(iEndG);
+  var drivePulley = pulley(20, TIP1); drivePulley.position.x = MX; mEndG.add(drivePulley);
+  var idlerPulley = pulley(20, TIP2); idlerPulley.position.x = IX; iEndG.add(idlerPulley);
+
+  function cyl(r, h, yc, x, mat) {
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 40), mat);
+    m.position.set(x, yc, 0);
+    return m;
+  }
+  // motor: 37 mm gearbox bolted on top of the motor bracket's plate (y = 22)
+  mEndG.add(cyl(18.5, 52, 22 + 26, MX, boughtMat));
+  mEndG.add(cyl(3, 24, 10, MX, steelMat));                 // its shaft, down into the pulley
+  // encoder: 38 mm body on top of its plate (y = 21), 6 mm shaft down to the pulley
+  iEndG.add(cyl(19, 35.5, 21 + 17.75, IX, boughtMat));
+  iEndG.add(cyl(10, 5, 18.5, IX, steelMat));               // the 20 mm boss in the plate
+  iEndG.add(cyl(3, 14, 9, IX, steelMat));                  // the 6 mm shaft
+
+  // ---- hold-down bolts and T-nuts ----------------------------------------
+  // Both hold-downs are plain O5.5 round holes, measured off the STLs - neither
+  // bracket has a slot in it. Motor bracket: M5 up from below into a T-nut in the
+  // rail's BOTTOM slot, head recessed in the 10 x 5 channel between the feet.
+  // Encoder bracket: M5 down through its slab into the TOP slot. The adjustment
+  // is the T-nut running in the rail, not a slot in the printed part.
+  var boltMat = new THREE.MeshStandardMaterial({ color: 0xc8a13a, metalness: 0.75, roughness: 0.34 });
+
+  function box(w, hgt, d, x, y, z) {
+    var m = new THREE.Mesh(new THREE.BoxGeometry(w, hgt, d), boltMat);
+    m.position.set(x, y, z);
+    return m;
+  }
+  function bolt(x, headYlo, headYhi, shankYlo, shankYhi) {
+    var g = new THREE.Group();
+    var head = new THREE.Mesh(new THREE.CylinderGeometry(4.25, 4.25, headYhi - headYlo, 30), boltMat);
+    head.position.set(x, (headYlo + headYhi) / 2, 0);
+    var shank = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, shankYhi - shankYlo, 24), boltMat);
+    shank.position.set(x, (shankYlo + shankYhi) / 2, 0);
+    g.add(head); g.add(shank);
+    return g;
+  }
+  // The T-nut is 6 wide x 8.6 long x 3 thick. The slot mouth is 6.0 and the
+  // cavity behind it 9.0, so it only passes the mouth edge-on and only catches
+  // the lips once it is turned across the slot. That turn is the whole trick.
+  //
+  // Encoder end, TOP slot:  drop the nut in, turn it 90 deg, bolt DOWN into it.
+  // Motor end, BOTTOM slot: a dropped nut would just fall out, so this one
+  //   slides in from the open end of the rail already turned, and the bolt
+  //   comes UP from below with its head recessed in the foot channel.
+  var iFix = new THREE.Group(); iEndG.add(iFix);
+  var mFix = new THREE.Group(); mEndG.add(mFix);
+
+  var encBolt = bolt(IX + 28.45, -1, 4, -8.6, -1);
+  var encTnut = box(6, 3.0, 8.6, IX + 28.45, -7.1, 0);
+  iFix.add(encBolt); iFix.add(encTnut);
+
+  var motBolt = bolt(MX, -32, -27, -32, -19.4);
+  var motTnut = box(6, 3.0, 8.6, MX, -20.9, 0);
+  mFix.add(motBolt); mFix.add(motTnut);
+
+  var ENC_TNUT_Y = -7.4, MOT_TNUT_Y = -21.0;
+
+  // ---- printed parts, from the exported meshes ---------------------------
+  function decode(m) {
+    var bin = atob(m.b64), bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) { bytes[i] = bin.charCodeAt(i); }
+    var q = new Uint16Array(bytes.buffer, 0, bytes.length >> 1);
+    var verts = m.tris * 3, pos = new Float32Array(verts * 3);
+    for (var v = 0; v < verts; v++) {
+      pos[v * 3]     = m.lo[0] + q[v * 3]     / 65535 * m.span[0];
+      pos[v * 3 + 1] = m.lo[1] + q[v * 3 + 1] / 65535 * m.span[1];
+      pos[v * 3 + 2] = m.lo[2] + q[v * 3 + 2] / 65535 * m.span[2];
+    }
+    var g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+    return g;
+  }
+
+  var cartGroup = new THREE.Group(); scene.add(cartGroup);
+  var RIG = window.RIG_MESH;
+  if (!RIG) {
+    loading.textContent = "printed parts unavailable — rail, pulleys and belt shown alone";
+    loading.style.background = "transparent";
+    loading.style.alignItems = "start";
+    loading.style.paddingTop = "12px";
+  } else {
+    var cg = decode(RIG.cart);
+    cg.rotateX(Math.PI / 2);        // the STL's -z is "up" in use
+    cg.translate(-HALF, 0, 0);      // and its x runs 0..38; centre it
+    cg.computeVertexNormals();
+    cartGroup.add(new THREE.Mesh(cg, printedMat));
+
+    // motor bracket: its rail socket floor is at bracket y = 3, rail centre y = 13
+    // encoder bracket: it sits ON the rail, underside at bracket y = 26
+    [[RIG.motorEnd, MX - 18.6, -27, mEndG], [RIG.encoderEnd, IX - 18.55, -30, iEndG]].forEach(function (p) {
+      var g = decode(p[0]);
+      g.rotateY(Math.PI / 2);       // bracket z is the rail axis
+      g.translate(p[1], p[2], 0);
+      g.computeVertexNormals();
+      p[3].add(new THREE.Mesh(g, printedMat));
+    });
+    loading.remove();
+  }
+
+  // ---- pendulum ----------------------------------------------------------
+  // The cart's pivot: the O21 boss hole sits at cart (19, -29) on the plate at
+  // cart y -16..-21, which lands at (0, 29, -18.5) inside cartGroup. The axis
+  // runs across the rail, so the pole swings in the plane of travel.
+  var PIVOT_Y = 29, PIVOT_Z = -18.5;
+  var POLE_LEN = 402;            // pivot to tip, link2 spliced onto link1
+  var HUB_BELOW = 16;
+  var STRIKE_DEG = 180;          // full swing: the pole hangs past the table's edge
+                                 // (flat on a table, the 402 mm tip would strike at 98.7)
+
+  var pivot = new THREE.Group();
+  pivot.position.set(0, PIVOT_Y, PIVOT_Z);
+  cartGroup.add(pivot);
+
+  function zcyl(r, len, x, y, z, mat) {
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 30), mat);
+    m.rotation.x = Math.PI / 2;
+    m.position.set(x, y, z);
+    return m;
+  }
+  function bar(w, l, t, x, y, z, mat) {
+    var m = new THREE.Mesh(new THREE.BoxGeometry(w, l, t), mat);
+    m.position.set(x, y, z);
+    return m;
+  }
+
+  // encoder: body inboard over the rail, boss in the plate, shaft outboard
+  var encBody  = zcyl(19, 35.5, 0, PIVOT_Y, PIVOT_Z + 19.25, boughtMat);
+  var encBoss  = zcyl(10, 5.0, 0, PIVOT_Y, PIVOT_Z, steelMat);
+  var encShaft = zcyl(3, 13.0, 0, PIVOT_Y, PIVOT_Z - 9, steelMat);
+  cartGroup.add(encBody); cartGroup.add(encBoss); cartGroup.add(encShaft);
+
+  // Hub: an 11 mm plate carrying the link, with a O14 x 4 collar on the
+  // encoder side around a O6.3 THROUGH bore. Set 1 mm off the encoder's boss,
+  // the shaft reaches only to 3 mm short of the pole face - it does not touch
+  // the link. Measured off zipy_dp_hub.stl.
+  var hubCollar = zcyl(7, 4, 0, 0, -5.5, printedMat);
+  var hubBody   = bar(26, 60, 11, 0, -HUB_BELOW + 30, -13.0, printedMat);
+  var linkOne   = bar(30, 246, 5, 0, -HUB_BELOW + 123, -21.0, printedMat);
+  var linkTwo   = bar(30, 246, 5, 0, 279, -26.0, printedMat);
+  pivot.add(hubCollar); pivot.add(hubBody); pivot.add(linkOne); pivot.add(linkTwo);
+  var setScrew = new THREE.Mesh(new THREE.CylinderGeometry(1.6, 1.6, 13, 20), boltMat);
+  setScrew.position.set(0, -9.5, -11.5);
+  pivot.add(setScrew);
+  var setHead = new THREE.Mesh(new THREE.CylinderGeometry(2.8, 2.8, 3, 24), boltMat);
+  setHead.position.set(0, -17.5, -11.5);
+  pivot.add(setHead);
+  var nutMat = new THREE.MeshStandardMaterial({ color: 0x9aa7b0, metalness: 0.8, roughness: 0.3 });
+  var setNut = new THREE.Mesh(new THREE.CylinderGeometry(3.18, 3.18, 2.4, 6), nutMat);
+  setNut.position.set(0, -10, -11.5);
+  pivot.add(setNut);
+
+  // The real parts, from ZIPY's STLs (pend_mesh.js), in the same places as the
+  // boxes above: hub bore at (0,0), plate z 0..11 and collar 11..15 toward the
+  // encoder; links 30 x 246 x 5 with their holes at 36/54 (and 208/226 on link 1).
+  var PEND = window.PEND_MESH;
+  function pendGeo(m, dx, dy, dz) {
+    var g = decode(m); g.translate(dx, dy, dz); g.computeVertexNormals(); return g;
+  }
+  if (PEND) {
+    hubBody.geometry.dispose(); hubBody.geometry = pendGeo(PEND.hub, 0, -14, -5.5);
+    hubCollar.visible = false;                       // the real hub has its own collar
+    linkOne.geometry.dispose(); linkOne.geometry = pendGeo(PEND.link1, 0, -123, -2.5);
+    linkTwo.geometry.dispose(); linkTwo.geometry = pendGeo(PEND.link2, 0, -123, -2.5);
+  }
+
+  var hubBolts = [20, 38].map(function (y) {
+    var b = zcyl(1.7, 22, 0, y, -13.5, boltMat); pivot.add(b); return b;
+  });
+  var spliceBolts = [192, 210].map(function (y) {
+    var b = zcyl(1.7, 12, 0, y, -23.5, boltMat); pivot.add(b); return b;
+  });
+
+  // the M3s that hold the encoder into the cart's plate: O31 circle, from the
+  // outboard side, into the encoder's own threaded face
+  var encScrews = [0, 120, 180, 300].map(function (deg) {
+    var a = deg * D2R;
+    var g = new THREE.Group();
+    var shank = zcyl(1.6, 9, 15.5 * Math.sin(a), PIVOT_Y + 15.5 * Math.cos(a), PIVOT_Z - 1.5, boltMat);
+    var head  = zcyl(2.8, 3, 15.5 * Math.sin(a), PIVOT_Y + 15.5 * Math.cos(a), PIVOT_Z - 4.5, boltMat);
+    g.add(shank); g.add(head);
+    cartGroup.add(g);
+    return g;
+  });
+  var encParts = [];   // filled in below so the encoder can pull out too
+
+  // ---- second pendulum: the elbow (a new design, not an exported mesh) ----
+  // Pivot frame: y runs up link 1, z across the rail, negative = outboard.
+  // Link 1 occupies z -23.5..-18.5 and ends at y 230. The elbow axis sits at
+  // y 248 on an 8 mm shaft in two 608s (8 x 22 x 7). Link 2 hangs on its own
+  // hub OUTBOARD of the housing, so it can pass link 1 in a full turn; the
+  // magnet and the AS5048A sit on the INBOARD end of the shaft.
+  var ELBOW_Y = 248;
+  var rubberMat = new THREE.MeshStandardMaterial({ color: 0x5a2a24, metalness: 0.05, roughness: 0.8 });
+  var pcbMat    = new THREE.MeshStandardMaterial({ color: 0x1f5e3a, metalness: 0.1, roughness: 0.6 });
+  var chipMat   = new THREE.MeshStandardMaterial({ color: 0x1a1c1e, metalness: 0.2, roughness: 0.5 });
+  var magNMat   = new THREE.MeshStandardMaterial({ color: 0xc0503a, metalness: 0.6, roughness: 0.35 });
+  var magSMat   = new THREE.MeshStandardMaterial({ color: 0x4a7fa0, metalness: 0.6, roughness: 0.35 });
+  var sensorCableMat = new THREE.MeshStandardMaterial({ color: 0x2e3338, metalness: 0.05, roughness: 0.85 });
+
+  function ring(rOut, rIn, len, z, mat) {          // a tube along z, centred at z
+    var s = new THREE.Shape(); s.absarc(0, 0, rOut, 0, Math.PI * 2, false);
+    var h = new THREE.Path();  h.absarc(0, 0, rIn, 0, Math.PI * 2, true); s.holes.push(h);
+    var g = new THREE.ExtrudeGeometry(s, { depth: len, bevelEnabled: false, curveSegments: 40 });
+    g.translate(0, 0, -len / 2);
+    var m = new THREE.Mesh(g, mat); m.position.z = z; return m;
+  }
+  function zhex(r, len, x, y, z) {
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 6), nutMat);
+    m.rotation.x = Math.PI / 2; m.position.set(x, y, z); return m;
+  }
+  function bearing608(z) {
+    var g = new THREE.Group();
+    g.add(ring(11, 9.6, 7, 0, steelMat));          // outer race, O22
+    g.add(ring(6.05, 4.0, 7, 0, steelMat));        // inner race, 8 mm bore
+    g.add(ring(9.6, 6.05, 6.2, 0, rubberMat));     // the 2RS seals: take them out
+    g.position.z = z; return g;
+  }
+  function anchorAt(parent, x, y, z) {
+    var o = new THREE.Object3D(); o.position.set(x, y, z); parent.add(o); return o;
+  }
+
+  var elbowG = new THREE.Group();
+  elbowG.position.set(0, ELBOW_Y, 0);
+  pivot.add(elbowG);
+
+  // housing: O30 tube round a O22 bore, 20 long, centred on link 1's plane;
+  // a 6 mm shoulder in the middle (O17, clear of the inner rings) stops both
+  // bearings. A plate runs down link 1's outboard face to its two old splice
+  // holes at 192 and 210 - the elbow bolts on through those, nothing drilled.
+  var housing  = ring(15, 11, 20, -22, printedMat);
+  var shoulder = ring(11, 8.5, 6, -22, printedMat);
+  var ePlate   = bar(30, 56, 6, 0, -36, -26.5, printedMat);
+  elbowG.add(housing); elbowG.add(shoulder); elbowG.add(ePlate);
+  var ePlateBolts = [192, 210].map(function (y) {
+    var g = new THREE.Group();
+    g.add(zcyl(1.6, 14, 0, y - ELBOW_Y, -24, boltMat));
+    g.add(zcyl(2.8, 3, 0, y - ELBOW_Y, -31, boltMat));
+    g.add(zhex(3.18, 2.4, 0, y - ELBOW_Y, -17.3));
+    elbowG.add(g); return g;
+  });
+
+  var brgA = bearing608(-15.5), brgB = bearing608(-28.5);
+  elbowG.add(brgA); elbowG.add(brgB);
+  var eShaft  = zcyl(4, 35, 0, 0, -23.5, steelMat);           // O8 x 35, z -6..-41
+  var eSpacer = ring(6.5, 4.05, 1, -32.5, printedMat);        // touches the inner ring only
+  elbowG.add(eShaft); elbowG.add(eSpacer);
+
+  // magnet cap on the inboard end, the diametric magnet flush in its face
+  var magCap = zcyl(7, 9, 0, 0, -7.5, printedMat);            // z -3..-12
+  var magnetG = new THREE.Group();
+  [[0, magNMat], [Math.PI, magSMat]].forEach(function (p) {
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 2.5, 24, 1, false, p[0], Math.PI), p[1]);
+    m.rotation.x = Math.PI / 2; magnetG.add(m);
+  });
+  magnetG.position.z = -4.25;
+  elbowG.add(magCap); elbowG.add(magnetG);
+
+  // AS5048A on a bracket whose legs land on the housing's inboard end face:
+  // chip toward the magnet, 1.6 mm gap. Board drawn 25 x 25 - measure yours.
+  var sensorG = new THREE.Group();
+  sensorG.add(bar(4, 6, 16, 13, 0, -4, printedMat));
+  sensorG.add(bar(4, 6, 16, -13, 0, -4, printedMat));
+  sensorG.add(bar(32, 30, 3, 0, 0, 2.7, printedMat));
+  sensorG.add(bar(25, 25, 1.6, 0, 0, 0.4, pcbMat));
+  sensorG.add(bar(5, 4.4, 1, 0, 0, -0.9, chipMat));
+  for (var pin = 0; pin < 6; pin++) { sensorG.add(bar(0.64, 0.64, 7, -6.35 + pin * 2.54, -10.5, 4.6, boltMat)); }
+  elbowG.add(sensorG);
+
+  // link 2 on its own hub: the same pattern as link 1 on the base hub, so the
+  // pivot is 16 mm in from link 2's end and link 2's holes (36 and 54 from its
+  // end) land on the hub's bolts at +20 and +38
+  var link2G = new THREE.Group();
+  elbowG.add(link2G);
+  link2G.add(bar(26, 60, 6, 0, 14, -37, printedMat));          // hub plate
+  link2G.add(zcyl(10, 8, 0, 0, -37, printedMat));              // boss round the shaft
+  link2G.add(bar(30, 246, 5, 0, 107, -42.5, printedMat));      // link 2, z -40..-45
+  [20, 38].forEach(function (y) { link2G.add(zcyl(1.7, 13, 0, y, -39.5, boltMat)); });
+
+  // the sensor's cable, tied down link 1's inboard face to the base
+  var sensorCable = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-3, ELBOW_Y - 10.5, 8), new THREE.Vector3(10, ELBOW_Y - 22, 0),
+    new THREE.Vector3(11, 222, -16.2), new THREE.Vector3(11, 60, -16.2),
+    new THREE.Vector3(11, 22, -12), new THREE.Vector3(16, 4, 2), new THREE.Vector3(8, -14, 12)
+  ]), 80, 1.3, 8, false), sensorCableMat);
+  pivot.add(sensorCable);
+
+  // where the elbow's callouts point
+  var anSeal   = anchorAt(elbowG, 0, 22, -15.5);
+  var anShaft  = anchorAt(elbowG, 0, -10, -36);
+  var anMag    = anchorAt(elbowG, 0, -14, -4);
+  var anSensor = anchorAt(elbowG, 0, 31, 2);
+  var anBolts  = anchorAt(elbowG, 0, -47, -31);
+  var anLink2  = anchorAt(link2G, 0, 70, -45);
+  var anCable  = anchorAt(pivot, 11, 120, -16);
+  var anBase   = anchorAt(pivot, 14, 4, 4);
+
+  function applyElbowExplode(e) {
+    var E = e * 30;
+    brgA.position.z = -15.5 + E;
+    brgB.position.z = -28.5 - E;
+    eShaft.position.z = -23.5 - 2.2 * E;
+    eSpacer.position.z = -32.5 - 1.6 * E;
+    link2G.position.z = -2.6 * E;
+    magCap.position.z = -7.5 + 1.4 * E;
+    magnetG.position.z = -4.25 + 1.9 * E;
+    sensorG.position.z = 2.6 * E;
+    ePlateBolts.forEach(function (g) { g.position.z = -1.3 * E; });
+    anSeal.position.z = -15.5 + E;
+    anShaft.position.z = -36 - 2.2 * E;
+    anMag.position.z = -4 + 1.9 * E;
+    anSensor.position.z = 2 + 2.6 * E;
+    anBolts.position.z = -31 - 1.3 * E;
+  }
+  elbowG.visible = false; sensorCable.visible = false;
+  if (PEND) {   // the one-piece route's link 2 is the real part too
+    link2G.children[2].geometry.dispose();
+    link2G.children[2].geometry = pendGeo(PEND.link2, 0, -123, -2.5);
+  }
+
+  // ---- second pendulum, ZIPY route: zipy_dp_elbow + a bearing cartridge ---
+  // ZIPY's elbow is a joggled bracket. Its link plate (6 mm, 2 x M3 18 apart,
+  // hex pockets) bolts to link 1's top holes; its encoder plate (4 mm), ~37 mm
+  // further out, has a O21 spigot hole and 6 x M3 slots on a O31 circle - the
+  // 600 p/r encoder's pattern. STL to pivot frame: x = z_s - 22,
+  // y = 250 - x_s, z = -66 - y_s, so the elbow axis lands at y 250, 20 mm past
+  // link 1's end, and the encoder plate spans z -66..-70. A printed cartridge
+  // bolts in where the encoder would: boss in the O21 hole, flange on the
+  // plate's inner face, two 608s inside. The shaft runs out through the hole to
+  // link 2 on a reprinted zipy_dp_hub (8 mm bore); the magnet and the AS5048A
+  // sit on the inner end, in the space the encoder body would have used.
+  var ZA = 250;                                       // elbow axis height up link 1
+  var zipyG = new THREE.Group(); pivot.add(zipyG);
+  if (PEND) {
+    var eg = decode(PEND.elbow);
+    eg.applyMatrix4(new THREE.Matrix4().set(0, 0, 1, -22, -1, 0, 0, ZA, 0, -1, 0, -66, 0, 0, 0, 1));
+    eg.computeVertexNormals();
+    zipyG.add(new THREE.Mesh(eg, printedMat));
+  }
+  // link plate bolts: head on link 1's inboard face, nut in the elbow's pocket
+  var zPlateBolts = [192, 210].map(function (y) {
+    var g = new THREE.Group();
+    g.add(zcyl(2.8, 3, 0, y, -17, boltMat));
+    g.add(zcyl(1.6, 13, 0, y, -25, boltMat));
+    g.add(zhex(3.18, 2.4, 0, y, -28.3));
+    zipyG.add(g); return g;
+  });
+  // the cartridge: O30 body round a O22 bore (z -42..-62), a O38 flange on the
+  // plate's inner face (-62..-66), a O20 boss in the hole. The 6 mm ring between
+  // the bearings is a LOOSE outer spacer: with a fixed shoulder the first bearing
+  // could not get past it to the flange.
+  var cartG = new THREE.Group();
+  // as zipy_dp_cartridge.stl: the flange is 6 mm thick outside the body, so
+  // the six blind M3 pilot holes end in solid plastic
+  [ring(15, 11, 20, -52, printedMat), ring(10.9, 9.8, 6, -52, printedMat),
+   ring(19, 8.5, 4, -64, printedMat), ring(19, 15, 2, -61, printedMat), ring(17, 15, 4, -58, printedMat),
+   ring(10, 8.5, 4, -68, printedMat)].forEach(function (m) {
+    m.position.y = ZA; cartG.add(m);
+  });
+  zipyG.add(cartG);
+  var zBrgA = bearing608(-45.5), zBrgB = bearing608(-58.5);
+  zBrgA.position.y = ZA; zBrgB.position.y = ZA;
+  zipyG.add(zBrgA); zipyG.add(zBrgB);
+  // 6 x M3 x 8 through the plate's slots, threaded straight into the flange
+  // (slots at 30, 90 ... 330 deg). No nuts: on the O31 circle a nut would sit
+  // inside the cartridge's own wall.
+  var zCartScrews = [30, 90, 150, 210, 270, 330].map(function (deg) {
+    var a = deg * D2R, x = 15.5 * Math.cos(a), y = ZA + 15.5 * Math.sin(a);
+    var g = new THREE.Group();
+    g.add(zcyl(2.8, 3, x, y, -71.5, boltMat));
+    g.add(zcyl(1.6, 8, x, y, -66, boltMat));
+    zipyG.add(g); return g;
+  });
+  var zShaft  = zcyl(4, 50, 0, ZA, -61, steelMat);              // O8 x 50 dowel pin, z -36..-86
+  var zSleeve = ring(6, 4.05, 9, -66.5, printedMat);            // inner ring to hub collar
+  zSleeve.position.y = ZA;
+  var zInner  = ring(5.75, 4.05, 6, -52, printedMat);           // inner spacer: clamp never loads the balls
+  zInner.position.y = ZA;
+  zipyG.add(zShaft); zipyG.add(zSleeve); zipyG.add(zInner);
+  // link 2 on a reprinted zipy_dp_hub (8 mm bore): collar toward the elbow.
+  // Its bolts are M3 x 16 exactly: tips flush with the collar face at -75. An 18
+  // would pass the cartridge screw heads (-73, r 18.3) with 0.1 mm to spare.
+  var zLink2G = new THREE.Group(); zLink2G.position.set(0, ZA, 0); zipyG.add(zLink2G);
+  if (PEND) {
+    zLink2G.add(new THREE.Mesh(pendGeo(PEND.hub, 0, 0, -86), printedMat));
+    zLink2G.add(new THREE.Mesh(pendGeo(PEND.link2, 0, -16, -91), printedMat));
+  } else {
+    zLink2G.add(bar(30, 60, 15, 0, 14, -78.5, printedMat));
+    zLink2G.add(bar(30, 246, 5, 0, 107, -88.5, printedMat));
+  }
+  [20, 38].forEach(function (y) {
+    zLink2G.add(zcyl(1.7, 18, 0, y, -82.5, boltMat));
+    zLink2G.add(zcyl(2.8, 3, 0, y, -92.5, boltMat));
+  });
+  // magnet cap on the inner end (z -42..-33): the shaft ends at -36, 0.5 mm of
+  // cap floor, then the magnet flush in its face at -33
+  var zCap = zcyl(7, 9, 0, ZA, -37.5, printedMat);
+  var zMag = new THREE.Group();
+  [[0, magNMat], [Math.PI, magSMat]].forEach(function (p) {
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(3, 3, 2.5, 24, 1, false, p[0], Math.PI), p[1]);
+    m.rotation.x = Math.PI / 2; zMag.add(m);
+  });
+  zMag.position.set(0, ZA, -34.25);
+  zipyG.add(zCap); zipyG.add(zMag);
+  // AS5048A on a bracket off the cartridge's inner end: chip 1.5 mm from the magnet
+  var zSensorG = new THREE.Group(); zSensorG.position.y = ZA;
+  zSensorG.add(bar(4, 6, 11.5, 13, 0, -36.25, printedMat));
+  zSensorG.add(bar(4, 6, 11.5, -13, 0, -36.25, printedMat));
+  zSensorG.add(bar(32, 20, 3, 0, 5, -27.4, printedMat));
+  zSensorG.add(bar(25, 25, 1.6, 0, 0, -29.7, pcbMat));
+  zSensorG.add(bar(5, 4.4, 1, 0, 0, -31.0, chipMat));
+  for (var zp = 0; zp < 6; zp++) { zSensorG.add(bar(0.64, 0.64, 7, -6.35 + zp * 2.54, -10.5, -25.4, boltMat)); }
+  zipyG.add(zSensorG);
+  var zCable = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-3, ZA - 10.5, -22), new THREE.Vector3(12, 232, -17),
+    new THREE.Vector3(12, 222, -16.2), new THREE.Vector3(12, 60, -16.2),
+    new THREE.Vector3(12, 22, -12), new THREE.Vector3(16, 4, 2), new THREE.Vector3(8, -14, 12)
+  ]), 80, 1.3, 8, false), sensorCableMat);
+  pivot.add(zCable);
+
+  var zaElbow  = anchorAt(zipyG, 0, 205, -27);
+  var zaCart   = anchorAt(zipyG, 0, ZA + 19, -52);
+  var zaSeal   = anchorAt(zipyG, 0, ZA - 13, -45.5);
+  var zaScrews = anchorAt(zipyG, 0, ZA - 22, -72);
+  var zaShaft  = anchorAt(zipyG, 0, ZA + 6, -86);
+  var zaHub    = anchorAt(zLink2G, 0, 48, -88);
+  var zaSensor = anchorAt(zipyG, 0, ZA + 17, -30);
+  var zaLink2  = anchorAt(zLink2G, 0, 140, -91);
+
+  function applyZipyExplode(e) {
+    var E = e * 30;
+    zPlateBolts.forEach(function (g) { g.position.z = 1.2 * E; });
+    cartG.position.z = 1.4 * E;
+    zBrgB.position.z = -58.5 + 2.0 * E;
+    zBrgA.position.z = -45.5 + 2.6 * E;
+    zCartScrews.forEach(function (g) { g.position.z = -1.6 * E; });
+    zShaft.position.z = -61 - 2.6 * E;
+    zSleeve.position.z = -66.5 - 2.0 * E;
+    zInner.position.z = -52 + 2.3 * E;
+    zLink2G.position.z = -3.0 * E;
+    zCap.position.z = -37.5 + 3.0 * E;
+    zMag.position.z = -34.25 + 3.4 * E;
+    zSensorG.position.z = 3.8 * E;
+    zaCart.position.z = -52 + 1.4 * E;
+    zaSeal.position.z = -45.5 + 2.6 * E;
+    zaScrews.position.z = -72 - 1.6 * E;
+    zaShaft.position.z = -86 - 2.6 * E;
+    zaSensor.position.z = -30 + 3.8 * E;
+  }
+  zipyG.visible = false; zCable.visible = false;
+  var route = "zipy";                                 // which elbow the two modes show
+
+
+  // ---- limit switches ----------------------------------------------------
+  // Placed by function: the cart's end face must trip them before it can reach
+  // a bracket. Software limits sit at +/-230, these are the hard backstop at
+  // +/-252. The 21 x 9 x 40 envelope is 06_limit_switch_mount_a; its exact
+  // mounting orientation is indicative, the trip position is not.
+  var TRIP_X = 252;
+  var switches = new THREE.Group();
+  scene.add(switches);
+  [-1, 1].forEach(function (sgn) {
+    var mount = new THREE.Mesh(new THREE.BoxGeometry(40, 21, 9),
+      new THREE.MeshStandardMaterial({ color: 0xe4ded2, metalness: 0.02, roughness: 0.72 }));
+    mount.position.set(sgn * (TRIP_X + 6), -14, 14.5);
+    switches.add(mount);
+    var body = new THREE.Mesh(new THREE.BoxGeometry(20, 11, 7),
+      new THREE.MeshStandardMaterial({ color: 0x2b2f33, metalness: 0.1, roughness: 0.7 }));
+    body.position.set(sgn * (TRIP_X + 4), -14, 21);
+    switches.add(body);
+    var lever = new THREE.Mesh(new THREE.BoxGeometry(14, 1.2, 5), steelMat);
+    lever.position.set(sgn * (TRIP_X - 3), -8.5, 21);
+    lever.rotation.z = sgn * 0.35;
+    switches.add(lever);
+  });
+
+  // ---- encoder cable -----------------------------------------------------
+  // The pivot encoder rides on the cart and travels +/-230, so its cable needs
+  // a festoon long enough for the far end and tidy enough not to foul the belt.
+  var CABLE_LEN = 250;
+  var cableAnchor = new THREE.Vector3(0, -20, 55);
+  var anchorBlock = new THREE.Mesh(new THREE.BoxGeometry(16, 12, 16),
+    new THREE.MeshStandardMaterial({ color: 0xe4ded2, metalness: 0.02, roughness: 0.72 }));
+  anchorBlock.position.set(0, -26, 55);
+  scene.add(anchorBlock);
+  var cableMat = new THREE.MeshStandardMaterial({ color: 0x33383d, metalness: 0.05, roughness: 0.85 });
+  var cable = new THREE.Mesh(new THREE.BufferGeometry(), cableMat);
+  scene.add(cable);
+
+  function rebuildCable(cx) {
+    var a = new THREE.Vector3(cx, PIVOT_Y, 19);
+    var d = a.distanceTo(cableAnchor);
+    var sag = Math.min(70, Math.sqrt(Math.max(0, 3 * d * (CABLE_LEN - d) / 8)));
+    var mid = a.clone().add(cableAnchor).multiplyScalar(0.5);
+    mid.y -= sag;
+    var curve = new THREE.QuadraticBezierCurve3(a, mid, cableAnchor);
+    cable.geometry.dispose();
+    cable.geometry = new THREE.TubeGeometry(curve, 40, 1.6, 8, false);
+  }
+
+  // ---- belt --------------------------------------------------------------
+  function smooth(pts, n) {
+    var v = pts.map(function (p) { return new THREE.Vector3(p[0], 0, p[1]); });
+    var curve = new THREE.CatmullRomCurve3(v, false, "centripetal", 0.5);
+    return curve.getSpacedPoints(n).map(function (p) { return [p.x, p.z]; });
+  }
+
+  // One anchor, in cart coordinates, ordered from the end face inward to the
+  // tail of the wrap. Straight down the middle of the slot to the pocket mouth,
+  // then 345 degrees round the post: checked to keep 0.14 off the post, stay
+  // 0.07 inside the pocket wall and 0.15 inside the 2.12 slot.
+  function anchorPts(right) {
+    var c = -POST_DX;
+    var pts = [[-HALF - 30, SLOT_Z], [-HALF - 10, SLOT_Z], [-HALF, SLOT_Z],
+               [-HALF + 2, SLOT_Z], [-HALF + 7.2, SLOT_Z]];
+    for (var th = 150; th >= -195; th -= 4) {
+      var a = th * D2R;
+      pts.push([c + RING_R * Math.cos(a), SLOT_Z + RING_R * Math.sin(a)]);
+    }
+    var out = smooth(pts, 460).filter(function (p) { return p[0] >= -HALF - 0.01; });
+    if (right) { out = out.map(function (p) { return [-p[0], p[1]]; }); }
+    return out;
+  }
+  var ANCHOR_A = anchorPts(false), ANCHOR_B = anchorPts(true);
+
+  function buildLoop(cx) {
+    var P = [], F = [], i, t;
+    var MXc = MX + mSlide, IXc = IX + iSlide;
+    function add(x, z, fine) { P.push([x, z]); F.push(fine); }
+    function run(b, step, fine) {
+      var a = P[P.length - 1];
+      var L = Math.sqrt((b[0] - a[0]) * (b[0] - a[0]) + (b[1] - a[1]) * (b[1] - a[1]));
+      var n = Math.max(1, Math.round(L / step));
+      for (var k = 1; k <= n; k++) { add(a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n, fine); }
+    }
+    for (i = ANCHOR_A.length - 1; i >= 0; i--) { add(ANCHOR_A[i][0] + cx, ANCHOR_A[i][1], true); }
+    var iA = P.length - 1;
+    run([MXc, R1], 7, false);
+    for (t = 93; t <= 270; t += 3) { add(MXc + R1 * Math.cos(t * D2R), R1 * Math.sin(t * D2R), true); }
+    run([IXc, -R2], 7, false);
+    for (t = 273; t <= 450; t += 3) { add(IXc + R2 * Math.cos(t * D2R), R2 * Math.sin(t * D2R), true); }
+    run([cx + HALF, SLOT_Z], 7, false);
+    var iB = P.length - 1;
+    for (i = 0; i < ANCHOR_B.length; i++) { add(ANCHOR_B[i][0] + cx, ANCHOR_B[i][1], true); }
+    return { P: P, F: F, a: iA, b: iB };
+  }
+
+  // Rectangular-section ribbon along a planar polyline, from index i0 to i1.
+  // Teeth are cut into the inner face wherever the polyline is sampled finely
+  // enough to resolve GT2's 2 mm pitch.
+  function ribbon(loop, i0, i1) {
+    var P = loop.P, F = loop.F;
+    i0 = Math.max(0, i0); i1 = Math.min(P.length - 1, i1);
+    if (i1 - i0 < 2) { return new THREE.BufferGeometry(); }
+    var pos = [], arc = 0;
+    var hw = BELT_W / 2, ht = BELT_T / 2, yTop = BELT_Y + hw, yBot = BELT_Y - hw;
+
+    function corners(i, tooth) {
+      var a = P[Math.max(i0, i - 1)], b = P[Math.min(i1, i + 1)], p = P[i];
+      var tx = b[0] - a[0], tz = b[1] - a[1];
+      var L = Math.sqrt(tx * tx + tz * tz) || 1;
+      var nx = -tz / L, nz = tx / L;
+      var inn = -ht + tooth;
+      return {
+        ot: [p[0] + nx * ht, yTop, p[1] + nz * ht],
+        ob: [p[0] + nx * ht, yBot, p[1] + nz * ht],
+        it: [p[0] + nx * inn, yTop, p[1] + nz * inn],
+        ib: [p[0] + nx * inn, yBot, p[1] + nz * inn]
+      };
+    }
+    function quad(a, b, c, d) {
+      pos.push(a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
+      pos.push(a[0], a[1], a[2], c[0], c[1], c[2], d[0], d[1], d[2]);
+    }
+
+    var first = corners(i0, 0), pc = first;
+    for (var i = i0 + 1; i <= i1; i++) {
+      var dx = P[i][0] - P[i - 1][0], dz = P[i][1] - P[i - 1][1];
+      var step = Math.sqrt(dx * dx + dz * dz);
+      arc += step;
+      var tooth = (F[i] && step < 0.7 && Math.floor(arc) % 2 === 1) ? 0.34 : 0;
+      var cc = corners(i, tooth);
+      quad(pc.ot, cc.ot, cc.ob, pc.ob);
+      quad(cc.it, pc.it, pc.ib, cc.ib);
+      quad(pc.it, cc.it, cc.ot, pc.ot);
+      quad(pc.ob, cc.ob, cc.ib, pc.ib);
+      pc = cc;
+    }
+    quad(first.ot, first.ob, first.ib, first.it);
+    quad(pc.it, pc.ib, pc.ob, pc.ot);
+
+    var g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+    g.computeVertexNormals();
+    return g;
+  }
+
+  var belt = new THREE.Mesh(new THREE.BufferGeometry(), beltMat);
+  scene.add(belt);
+
+  // ---- callouts ----------------------------------------------------------
+  var CALLOUTS = [
+    { t: "Ø 8 post",               p: [-POST_DX, 10.4, SLOT_Z],     k: "", moves: true },
+    { t: "1.7 ring, open topped",       p: [POST_DX, 4.5, SLOT_Z + 7.6], k: "", moves: true },
+    { t: "2.15 slot",                   p: [-HALF + 2.5, 4.5, SLOT_Z],   k: "k-belt", moves: true },
+    { t: "return run, in the corridor", p: [0, 4.5, -9.5],               k: "k-belt", moves: true },
+    { t: "gearmotor, shaft down",       p: [MX, 62, 0],                  k: "k-steel", moves: false },
+    { t: "20T drive pulley",            p: [MX, 12, 0],                  k: "k-steel", moves: false },
+    { t: "600 p/r encoder",             p: [IX, 52, 0],                  k: "k-steel", moves: false },
+    { t: "20T on the encoder shaft",    p: [IX, 12, 0],                  k: "k-steel", moves: false },
+    { t: "580 between pulley centres",  p: [0, RAIL_TOP - 26, 0],        k: "k-steel", moves: false },
+    { t: "M5 into the rail's top slot",     p: [IX + 28.45, 9, 0],  k: "", moves: false, fix: true },
+    { t: "M5 up through the feet",          p: [MX, -37, 0],        k: "", moves: false, fix: true },
+    { t: "limit switch, trips at 252",     p: [TRIP_X, 4, 20],     k: "k-steel", moves: false },
+    { t: "encoder cable, festooned",       p: [0, -34, 55],        k: "k-steel", moves: false },
+    { t: "M3 set screw, in from below",    p: [0, -4, -34],        k: "", moves: true, fit: true },
+    { t: "M3 nut, drops into its slot",    p: [0, 19, -46],        k: "", moves: true, fit: true },
+    { t: "1 mm gap to the encoder boss",   p: [0, 40, -24],        k: "", moves: true, fit: true },
+    { t: "T-nut",                           p: [MX, -20.9, 14],     k: "", moves: false, fix: true },
+    { t: "drop it in edge-on, clear of the bracket", p: [IX + 62, 10, 0], k: "", moves: false, cl: true },
+    { t: "slide it under",                  p: [IX + 44, -6, -16], k: "", moves: false, cl: true },
+    { t: "then turn it 90\u00B0 across the slot", p: [IX + 28.45, -7, 16], k: "", moves: false, cl: true },
+    { t: "M5 down through a \u00D8 5.5 hole", p: [IX + 28.45, 10, -14], k: "", moves: false, cl: true },
+    { t: "this one slides in from the rail end", p: [MX - 46, -21, 0], k: "", moves: false, cl: true },
+    { t: "M5 up from below \u2014 do it before the rig goes down", p: [MX, -44, 0], k: "", moves: false, cl: true },
+    { t: "\u00D8 5.5 hole \u2014 the T-nut slides, not the bracket", p: [MX + 34, -29, 0], k: "k-belt", moves: false, cl: true },
+    // second pendulum: these follow the parts as they swing and come apart
+    { t: "2 \u00D7 608 \u2014 take the rubber seals out", obj: anSeal,   k: "k-belt", el: true, elb: true, rb: true },
+    { t: "\u00D8 8 shaft, smooth \u2014 never on thread",  obj: anShaft,  k: "k-steel", el: true, elb: true, rb: true },
+    { t: "diametric magnet in a printed cap",              obj: anMag,    k: "", el: true, elb: true, rb: true },
+    { t: "AS5048A on 3.3 V, 1.6 mm from the magnet",       obj: anSensor, k: "k-steel", el: true, elb: true, rb: true },
+    { t: "2 \u00D7 M3 through link 1's top holes",         obj: anBolts,  k: "", el: true, elb: true, rb: true },
+    { t: "link 2 on its own hub, 16.5 mm outboard",        obj: anLink2,  k: "k-steel", el: true, rb: true },
+    // ZIPY route
+    { t: "zipy_dp_elbow \u2014 2 \u00D7 M3 into link 1's top holes", obj: zaElbow, k: "", el: true, rz: true },
+    { t: "bearing cartridge \u2014 boss in the \u00D8 21 hole", obj: zaCart, k: "k-steel", el: true, elb: true, rz: true },
+    { t: "2 \u00D7 608 inside \u2014 seals out",           obj: zaSeal,   k: "k-belt", el: true, elb: true, rz: true },
+    { t: "M3 through the elbow's slots into the flange",   obj: zaScrews, k: "", el: true, elb: true, rz: true },
+    { t: "\u00D8 8 \u00D7 50 dowel pin",                   obj: zaShaft,  k: "k-steel", el: true, elb: true, rz: true },
+    { t: "zipy_dp_hub reprinted with an 8 mm bore",        obj: zaHub,    k: "", el: true, elb: true, rz: true },
+    { t: "magnet + AS5048A in the joggle",                 obj: zaSensor, k: "k-steel", el: true, elb: true, rz: true },
+    { t: "link 2, 66 mm outboard of link 1",               obj: zaLink2,  k: "k-steel", el: true, dsw: true, rz: true },
+    { t: "sensor cable down link 1",                       obj: anCable,  k: "", el: true, dsw: true },
+    { t: "loose loop here \u2014 or a slip ring for swing-up", obj: anBase, k: "k-belt", el: true, dsw: true },
+    { t: "rig at the table's edge \u2014 the double hangs ~0.5 m", p: [0, TABLE_Y - 8, -30], k: "k-belt", moves: true, el: true, dsw: true }
+  ];
+  var calloutEls = CALLOUTS.map(function (c) {
+    var el = document.createElement("div");
+    el.className = "callout " + c.k;
+    el.textContent = c.t;
+    stage.appendChild(el);
+    c.v = new THREE.Vector3();
+    return el;
+  });
+  var labelsOn = true;
+
+  function placeCallouts(w, h, cx) {
+    for (var i = 0; i < CALLOUTS.length; i++) {
+      var c = CALLOUTS[i], el = calloutEls[i];
+      var dbl = (mode === "elbow" || mode === "dswing");
+      var hide = !labelsOn || (c.fix && !fixingsOn) || (c.fit && mode !== "fit")
+              || (c.cl && mode !== "clamp") || (mode === "clamp" && !c.cl)
+              || (c.el && !dbl) || (dbl && !c.el)
+              || (c.elb && mode !== "elbow") || (c.dsw && mode !== "dswing")
+              || (c.rz && route !== "zipy") || (c.rb && route !== "block");
+      if (hide) { el.classList.remove("on"); continue; }
+      if (c.obj) { c.obj.getWorldPosition(c.v); c.v.project(camera); }
+      else { c.v.set(c.p[0] + (c.moves ? cx : 0), c.p[1], c.p[2]).project(camera); }
+      var x = (c.v.x * 0.5 + 0.5) * w, y = (-c.v.y * 0.5 + 0.5) * h;
+      el.style.left = x + "px";
+      el.style.top = y + "px";
+      el.classList.toggle("on", c.v.z < 1 && x > 4 && x < w - 4 && y > 4 && y < h - 4);
+    }
+  }
+
+  // ---- state -------------------------------------------------------------
+  var mode = "thread";
+  var thread = 1;
+  var cartX = 0;
+  var swingDeg = 12;
+  var explode = 0;    // 0 assembled, 1 fully apart
+  var clampT = 1;     // 0 loose parts in hand, 1 both ends bolted down
+  var phiDeg = 0;     // elbow: link 2 relative to link 1 (what the AS5048A reads)
+  var elbowEx = 0;    // elbow: 0 assembled, 1 fully apart
+  function wrap180(d) { return ((d + 180) % 360 + 360) % 360 - 180; }
+  var mSlide = 0, iSlide = 0;      // how far each end sits inboard of nominal
+  var SLIDE = 8;                   // the motor end's tensioning travel
+  var playing = false, playT0 = 0;
+
+  var slider = document.getElementById("progress");
+  var scrublabel = document.getElementById("scrublabel");
+  var playBtn = document.getElementById("play");
+  var modewhy = document.getElementById("modewhy");
+  var readout = document.getElementById("readout");
+  var stepLis = Array.prototype.slice.call(document.querySelectorAll("#steps > li"));
+
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  // The four phases of bolting an end down, laid out along the scrubber.
+  var CLAMP_STEPS = [
+    [0.00, "Get the nuts in", "Top nut drops into the slot edge-on. Bottom nut slides in from the open end of the rail \u2014 dropped in, it would just fall out."],
+    [0.30, "Turn the top nut 90\u00B0", "Now its 8.6 mm length lies across the 6 mm mouth and catches under the lips. Unturned, it pulls straight back out."],
+    [0.48, "Slide the motor end out", "Belt tension pulls both brackets inward, so take it up here. Both hold-downs are plain \u00D85.5 holes \u2014 what slides is the T-nut in the rail. Back the bolt off, slide the end, tighten. 1 mm of bracket is 2 mm of belt."],
+    [0.72, "Run both bolts home", "Each bolt pulls its nut against the slot lips and pinches the bracket to the rail. Tight enough that the bracket will not move when you swing the pole."]
+  ];
+  function clampPhase() {
+    var j = 0;
+    for (var i = 0; i < CLAMP_STEPS.length; i++) { if (clampT >= CLAMP_STEPS[i][0]) { j = i; } }
+    return j;
+  }
+
+  function applyClamp() {
+    var pIn    = clamp01(clampT / 0.30);
+    var pTurn  = clamp01((clampT - 0.30) / 0.18);
+    var pSlide = clamp01((clampT - 0.48) / 0.24);
+    var pBolt  = clamp01((clampT - 0.72) / 0.28);
+
+    // the motor end starts SLIDE mm inboard and is drawn out to nominal
+    mSlide = (1 - pSlide) * SLIDE;
+    iSlide = 0;                     // round hole, nothing to slide
+
+    // Top nut: the bracket's own slab covers its hole, so the nut drops into
+    // the slot clear of the bracket, slides under it, turns, and is finally
+    // pulled 0.4 mm up onto the lips by the bolt.
+    var pDrop   = clamp01(pIn / 0.55);
+    var pUnder  = clamp01((pIn - 0.55) / 0.45);
+    encTnut.position.x = (IX + 28.45) + 34 * (1 - pUnder);
+    encTnut.position.y = ENC_TNUT_Y + 0.4 * pBolt + (1 - pDrop) * 22;
+    encTnut.rotation.y = (1 - pTurn) * Math.PI / 2;
+    encBolt.position.y = (1 - pBolt) * 24;
+
+    // bottom nut: slides in along the rail from the open end, already turned
+    motTnut.position.x = MX - 44 * (1 - pIn);
+    motTnut.position.y = MOT_TNUT_Y - 0.4 * pBolt;
+    motBolt.position.y = -(1 - pBolt) * 20;
+
+  }
+
+  function rebuild() {
+    if (mode === "clamp") { applyClamp(); } else { mSlide = 0; iSlide = 0; }
+    mEndG.position.x = mSlide;
+    iEndG.position.x = iSlide;
+    var loop = buildLoop(cartX);
+    var n = loop.P.length - 1, i0 = 0, i1 = n;
+    if (mode === "thread") {
+      i0 = Math.round(loop.a * (1 - clamp01(thread / 0.5)));
+      i1 = loop.b + Math.round((n - loop.b) * clamp01((thread - 0.5) / 0.5));
+    }
+    belt.geometry.dispose();
+    belt.geometry = ribbon(loop, i0, i1);
+
+    cartGroup.position.x = cartX;
+    rebuildCable(cartX);
+    pivot.rotation.z = swingDeg * D2R;
+
+    // the second pendulum replaces the spliced-on link 2 in its two modes
+    var dbl = (mode === "elbow" || mode === "dswing");
+    var rz = dbl && route === "zipy", rbk = dbl && route === "block";
+    zipyG.visible = rz; zCable.visible = rz;
+    elbowG.visible = rbk; sensorCable.visible = rbk;
+    linkTwo.visible = !dbl;
+    spliceBolts.forEach(function (b) { b.visible = !dbl; });
+    link2G.rotation.z = phiDeg * D2R;
+    zLink2G.rotation.z = phiDeg * D2R;
+    applyElbowExplode(mode === "elbow" && route === "block" ? elbowEx : 0);
+    applyZipyExplode(mode === "elbow" && route === "zipy" ? elbowEx : 0);
+
+    var E = explode * 26;
+    hubCollar.position.z = -5.5  - E;
+    hubBody.position.z   = -13.0 - E;
+    linkOne.position.z   = -21.0 - 2.0 * E;
+    linkTwo.position.z   = -26.0 - 3.0 * E;
+    hubBolts.forEach(function (b) { b.position.z = -13.5 - 2.6 * E; });
+    spliceBolts.forEach(function (b) { b.position.z = -23.5 - 3.6 * E; });
+    setScrew.position.set(0, -9.5 - 1.2 * E, -11.5 - E);
+    setHead.position.set(0, -17.5 - 1.2 * E, -11.5 - E);
+    setNut.position.set(0, -10, -11.5 - E + 12 * explode);
+    encScrews.forEach(function (g) { g.position.z = -0.7 * E; });
+    encBody.position.z  = PIVOT_Z + 19.25 + 0.9 * E;
+    encBoss.position.z  = PIVOT_Z + 0.9 * E;
+    encShaft.position.z = PIVOT_Z - 9 + 0.9 * E;
+    drivePulley.rotation.y = cartX / R1;
+    idlerPulley.rotation.y = cartX / R2;
+
+    var active = 0;
+    for (var i = 0; i < stepLis.length; i++) {
+      if (thread >= parseFloat(stepLis[i].dataset.p) - 0.001) { active = i; }
+    }
+    for (var j = 0; j < stepLis.length; j++) {
+      stepLis[j].classList.toggle("active", mode === "thread" && j === active);
+    }
+    if (clampLis && clampLis.length) {
+      var cp = clampPhase();
+      for (var q = 0; q < clampLis.length; q++) {
+        clampLis[q].classList.toggle("active", mode === "clamp" && q === cp);
+      }
+    }
+    if (elbowLis && elbowLis.length) {
+      var ea = 0;
+      for (var r = 0; r < elbowLis.length; r++) {
+        if (elbowEx <= parseFloat(elbowLis[r].dataset.e) + 0.001) { ea = r; }
+      }
+      for (var s2 = 0; s2 < elbowLis.length; s2++) {
+        elbowLis[s2].classList.toggle("active", mode === "elbow" && s2 === ea);
+      }
+    }
+
+    var SEP = '<span class="sep">|</span>';
+    if (mode === "dswing") {
+      var th2 = wrap180(swingDeg + phiDeg);
+      var rel = ((phiDeg % 360) + 360) % 360;
+      var elbowH = 61 + (route === "zipy" ? ZA : ELBOW_Y) * Math.cos(swingDeg * D2R);
+      var tipH = elbowH + 230 * Math.cos(th2 * D2R);
+      readout.innerHTML =
+        '<span class="k">link 1</span> ' + swingDeg.toFixed(1) + "°" + SEP +
+        '<span class="k">link 2</span> ' + th2.toFixed(1) + "° from upright" + SEP +
+        '<span class="k">elbow</span> ' + wrap180(phiDeg).toFixed(1) + "°" + SEP +
+        '<span class="k">AS5048A reads</span> ' + Math.round(rel / 360 * 16383) + " of 16383" + SEP +
+        '<span class="k">PWM duty</span> ' + (rel / 3.6).toFixed(1) + "%" + SEP +
+        '<span class="k">link 2 tip</span> ' + tipH.toFixed(0) + " mm above the table";
+      return;
+    }
+    if (mode === "elbow" && route === "zipy") {
+      readout.innerHTML =
+        '<span class="k">along the shaft, inside out</span> AS5048A' + SEP + "1.6 gap" + SEP + "magnet cap 7" + SEP +
+        "608 7" + SEP + "shoulder 6" + SEP + "608 7" + SEP + "flange 4 + boss 4 in the elbow" + SEP +
+        "1 gap" + SEP + "link-2 hub 15" + SEP + "link 2" + SEP +
+        '<span class="k">shaft</span> Ø 8 × 50' + SEP +
+        '<span class="k">elbow axis</span> 250 mm from the base pivot';
+      return;
+    }
+    if (mode === "elbow") {
+      readout.innerHTML =
+        '<span class="k">along the shaft</span> AS5048A' + SEP + "1.6 gap" + SEP + "magnet cap 9" + SEP +
+        "608 7" + SEP + "shoulder 6" + SEP + "608 7" + SEP + "spacer 1" + SEP + "link-2 hub 8" + SEP +
+        '<span class="k">elbow mass</span> ≈ 50 g (bearings 24, shaft 14, prints 10, sensor 2)';
+      return;
+    }
+
+    if (mode === "clamp") {
+      var ph = clampPhase();
+      var centres = IX - (MX + mSlide);
+      readout.innerHTML =
+        '<span class="k">step ' + (ph + 1) + ' of 4</span> ' + CLAMP_STEPS[ph][1] +
+        '<span class="sep">|</span><span class="k">pulley centres</span> ' + centres.toFixed(1) + " mm" +
+        '<span class="sep">|</span><span class="k">belt taken up</span> ' +
+            (2 * (SLIDE - mSlide)).toFixed(1) + " mm" +
+        '<span class="sep">|</span><span class="k">needed</span> 2 \u00D7 M5 + 2 \u00D7 M5 T-nut';
+      modewhy.textContent = CLAMP_STEPS[ph][2];
+      return;
+    }
+    if (mode === "fit") {
+      readout.innerHTML =
+        '<span class="k">stack</span> boss face' +
+        '<span class="sep">|</span>1.0 gap' +
+        '<span class="sep">|</span>collar 4.0' +
+        '<span class="sep">|</span>hub 11.0' +
+        '<span class="sep">|</span>link1 5.0' +
+        '<span class="sep">|</span>link2 5.0' +
+        '<span class="sep">|</span><span class="k">shaft is 13 long, so it ends 3.0 mm short of the pole face</span>';
+      return;
+    }
+    if (mode === "swing") {
+      var tip = 61 + POLE_LEN * Math.cos(swingDeg * D2R);
+      readout.innerHTML =
+        '<span class="k">pole</span> ' + swingDeg.toFixed(1) + "\u00B0 from upright" +
+        '<span class="sep">|</span><span class="k">length from pivot</span> ' + POLE_LEN + " mm" +
+        '<span class="sep">|</span><span class="k">pivot above table</span> 61 mm' +
+        '<span class="sep">|</span><span class="k">tip</span> ' + Math.abs(tip).toFixed(0) + " mm " +
+            (tip >= 0 ? "above the table top" : "below it, past the edge");
+      return;
+    }
+    var sign = cartX >= 0 ? "+" : "−", mag = Math.abs(cartX).toFixed(1);
+    readout.innerHTML =
+      '<span class="k">cart</span> ' + sign + mag + " mm" +
+      '<span class="sep">|</span><span class="k">belt travel</span> ' + sign + mag + " mm" +
+      '<span class="sep">|</span><span class="k">motor</span> ' + (cartX / (Math.PI * 12.732)).toFixed(3) + " rev" +
+      '<span class="sep">|</span><span class="k">encoder</span> ' + (cartX / (Math.PI * 12.732)).toFixed(3) + " rev" +
+      '<span class="sep">|</span><span class="k">counts</span> ' + Math.round(cartX / MM_PER_COUNT) +
+      '<span class="sep">|</span><span class="k">resolution</span> ' + MM_PER_COUNT.toFixed(4) + " mm/count";
+  }
+
+  function setSliderFromState() {
+    var v = mode === "thread" ? thread
+          : mode === "drive" ? (cartX / TRAVEL * 0.5 + 0.5)
+          : mode === "swing" ? (swingDeg / STRIKE_DEG * 0.5 + 0.5)
+          : mode === "clamp" ? clampT
+          : mode === "dswing" ? (wrap180(phiDeg) / 360 + 0.5)
+          : mode === "elbow" ? elbowEx
+          : explode;
+    slider.value = Math.round(v * 1000);
+  }
+
+  slider.addEventListener("input", function () {
+    playing = false; playBtn.textContent = mode === "thread" ? "Replay" : "Run";
+    var v = parseInt(slider.value, 10) / 1000;
+    if (mode === "thread") { thread = v; }
+    else if (mode === "drive") { cartX = (v - 0.5) * 2 * TRAVEL; }
+    else if (mode === "swing") { swingDeg = (v - 0.5) * 2 * STRIKE_DEG; }
+    else if (mode === "clamp") { clampT = v; }
+    else if (mode === "dswing") { phiDeg = (v - 0.5) * 360; swingDeg = 0; }
+    else if (mode === "elbow") { elbowEx = v; }
+    else { explode = v; }
+    rebuild();
+  });
+
+  function setMode(m) {
+    mode = m;
+    document.getElementById("mode-thread").setAttribute("aria-pressed", String(m === "thread"));
+    document.getElementById("mode-drive").setAttribute("aria-pressed", String(m === "drive"));
+    document.getElementById("mode-swing").setAttribute("aria-pressed", String(m === "swing"));
+    document.getElementById("mode-fit").setAttribute("aria-pressed", String(m === "fit"));
+    document.getElementById("mode-clamp").setAttribute("aria-pressed", String(m === "clamp"));
+    document.getElementById("mode-dswing").setAttribute("aria-pressed", String(m === "dswing"));
+    document.getElementById("mode-elbow").setAttribute("aria-pressed", String(m === "elbow"));
+    playing = false;
+    cartX = 0; thread = 1; explode = 0; clampT = 1; phiDeg = 0; elbowEx = 0;
+    table.visible = (m !== "clamp");      // the motor bolt goes in from underneath
+    applyFixVis();
+    if (m === "thread") {
+      swingDeg = 12;
+      scrublabel.textContent = "Thread";
+      slider.setAttribute("aria-label", "Threading progress");
+      playBtn.textContent = "Replay";
+      modewhy.textContent = "Pressing each end down into its slot and round its post.";
+    } else if (m === "drive") {
+      swingDeg = 12;
+      scrublabel.textContent = "Cart position";
+      slider.setAttribute("aria-label", "Cart position along the rail");
+      playBtn.textContent = "Run";
+      modewhy.textContent = "One anchored run shortens, the other pays out. Both pulleys turn with it.";
+    } else if (m === "clamp") {
+      swingDeg = 0; clampT = 0;
+      scrublabel.textContent = "Bolt it down";
+      slider.setAttribute("aria-label", "Clamping sequence");
+      playBtn.textContent = "Clamp";
+      camGoal = {
+        p: new THREE.Vector3(MX - 128, 46, 182), t: new THREE.Vector3(MX + 18, -16, 0),
+        from: camera.position.clone(), fromT: controls.target.clone(), t0: performance.now()
+      };
+      follow = false;
+      viewIds.forEach(function (k) { document.getElementById(k).setAttribute("aria-pressed", "false"); });
+    } else if (m === "swing") {
+      scrublabel.textContent = "Pole angle";
+      slider.setAttribute("aria-label", "Pole angle from upright");
+      playBtn.textContent = "Swing";
+      modewhy.textContent = "Drawn as link 1 + link 2 (402 mm). Your rig swings like a 218 mm rod, which is link 1 on its own.";
+    } else if (m === "dswing") {
+      swingDeg = 0;
+      scrublabel.textContent = "Elbow angle";
+      slider.setAttribute("aria-label", "Angle of link 2 relative to link 1");
+      playBtn.textContent = "Swing";
+      modewhy.textContent = "Link 2 on the elbow, both links upright at the slider's centre. The AS5048A reads the elbow angle; the rig sits at the table's edge.";
+      camGoal = {
+        p: new THREE.Vector3(620, 300, 860), t: new THREE.Vector3(0, 200, -60),
+        from: camera.position.clone(), fromT: controls.target.clone(), t0: performance.now()
+      };
+      follow = true;
+      viewIds.forEach(function (k) { document.getElementById(k).setAttribute("aria-pressed", "false"); });
+    } else if (m === "elbow") {
+      swingDeg = 0; elbowEx = 1;
+      scrublabel.textContent = "Take apart";
+      slider.setAttribute("aria-label", "Exploded view of the elbow");
+      playBtn.textContent = "Assemble";
+      modewhy.textContent = route === "zipy"
+        ? "ZIPY's elbow on link 1, a cartridge with two 608s in its encoder face, the magnet and AS5048A behind. Drag to assemble."
+        : "The one-piece block: two 608s, an 8 mm shaft, the magnet cap and the AS5048A. Drag the slider to put it together.";
+      var ec = elbowCam();
+      camGoal = {
+        p: new THREE.Vector3(ec.p[0], ec.p[1], ec.p[2]), t: new THREE.Vector3(ec.t[0], ec.t[1], ec.t[2]),
+        from: camera.position.clone(), fromT: controls.target.clone(), t0: performance.now()
+      };
+      follow = true;
+      viewIds.forEach(function (k) { document.getElementById(k).setAttribute("aria-pressed", "false"); });
+    } else {
+      swingDeg = 0; explode = 1;
+      scrublabel.textContent = "Take apart";
+      slider.setAttribute("aria-label", "Exploded view of the pivot");
+      playBtn.textContent = "Assemble";
+      modewhy.textContent = "How the pole mounts to the encoder. Drag the slider to put it together.";
+      camGoal = {
+        p: new THREE.Vector3(78, 62, 96), t: new THREE.Vector3(0, 26, -28),
+        from: camera.position.clone(), fromT: controls.target.clone(), t0: performance.now()
+      };
+      follow = true;
+    }
+    setSliderFromState();
+    rebuild();
+  }
+  document.getElementById("mode-thread").addEventListener("click", function () { setMode("thread"); });
+  document.getElementById("mode-drive").addEventListener("click", function () { setMode("drive"); });
+  document.getElementById("mode-swing").addEventListener("click", function () { setMode("swing"); });
+  document.getElementById("mode-fit").addEventListener("click", function () { setMode("fit"); });
+  document.getElementById("mode-clamp").addEventListener("click", function () { setMode("clamp"); });
+  document.getElementById("mode-dswing").addEventListener("click", function () { setMode("dswing"); });
+  document.getElementById("mode-elbow").addEventListener("click", function () { setMode("elbow"); });
+
+  playBtn.addEventListener("click", function () {
+    if (mode === "thread") {
+      thread = 0; rebuild(); setSliderFromState();
+      playing = true; playT0 = performance.now();
+      playBtn.textContent = "Replay";
+    } else if (mode === "drive") {
+      playing = !playing;
+      playT0 = performance.now() - Math.asin(Math.max(-1, Math.min(1, cartX / TRAVEL))) / 0.0009;
+      playBtn.textContent = playing ? "Pause" : "Run";
+    } else if (mode === "swing") {
+      playing = !playing;
+      playT0 = performance.now();
+      playBtn.textContent = playing ? "Pause" : "Swing";
+    } else if (mode === "clamp") {
+      clampT = 0; rebuild(); setSliderFromState();
+      playing = true; playT0 = performance.now();
+      playBtn.textContent = "Clamp";
+    } else if (mode === "dswing") {
+      playing = !playing;
+      playT0 = performance.now();
+      playBtn.textContent = playing ? "Pause" : "Swing";
+    } else if (mode === "elbow") {
+      elbowEx = 1; rebuild(); setSliderFromState();
+      playing = true; playT0 = performance.now();
+      playBtn.textContent = "Assemble";
+    } else {
+      explode = 1; rebuild(); setSliderFromState();
+      playing = true; playT0 = performance.now();
+      playBtn.textContent = "Assemble";
+    }
+  });
+
+  var clampLis = Array.prototype.slice.call(document.querySelectorAll("#clampsteps li"));
+  clampLis.forEach(function (li) {
+    li.querySelector("button.step").addEventListener("click", function () {
+      if (mode !== "clamp") { setMode("clamp"); }
+      playing = false;
+      clampT = parseFloat(li.dataset.c);
+      setSliderFromState(); rebuild();
+    });
+  });
+
+  var elbowLis = Array.prototype.slice.call(document.querySelectorAll("#elbowsteps li"));
+  elbowLis.forEach(function (li) {
+    li.querySelector("button.step").addEventListener("click", function () {
+      if (mode !== "elbow") { setMode("elbow"); }
+      playing = false;
+      elbowEx = parseFloat(li.dataset.e);
+      setSliderFromState(); rebuild();
+    });
+  });
+
+  stepLis.forEach(function (li) {
+    li.querySelector("button.step").addEventListener("click", function () {
+      if (mode !== "thread") { setMode("thread"); }
+      playing = false;
+      thread = parseFloat(li.dataset.p);
+      setSliderFromState(); rebuild();
+    });
+  });
+
+  // ---- display modes -----------------------------------------------------
+  var modeBtns = { solid: "m-solid", ghost: "m-ghost", cut: "m-cut" };
+  function setDisplay(m) {
+    Object.keys(modeBtns).forEach(function (k) {
+      document.getElementById(modeBtns[k]).setAttribute("aria-pressed", String(k === m));
+    });
+    printedMat.clippingPlanes = (m === "cut") ? [clipPlane] : [];
+    printedMat.transparent = (m !== "solid");
+    printedMat.opacity = (m === "ghost") ? 0.34 : 1;
+    printedMat.depthWrite = (m !== "ghost");
+    printedMat.needsUpdate = true;
+    boughtMat.clippingPlanes = (m === "cut") ? [clipPlane] : [];
+    boughtMat.needsUpdate = true;
+  }
+  Object.keys(modeBtns).forEach(function (k) {
+    document.getElementById(modeBtns[k]).addEventListener("click", function () { setDisplay(k); });
+  });
+  setDisplay("ghost");
+
+  document.getElementById("labels").addEventListener("change", function (e) { labelsOn = e.target.checked; });
+
+  // Fixings: show the two M5s and their T-nuts, and make the rail see-through
+  // so you can see the nuts sitting inside the slots.
+  var fixingsOn = false;
+  function applyFixVis() {
+    var on = fixingsOn || mode === "clamp";
+    mFix.visible = on;
+    iFix.visible = on;
+    alumMat.transparent = on;
+    alumMat.opacity = on ? 0.4 : 1;
+    alumMat.depthWrite = !on;
+    alumMat.needsUpdate = true;
+  }
+  document.getElementById("fix").addEventListener("change", function (e) {
+    fixingsOn = e.target.checked;
+    applyFixVis();
+  });
+  mFix.visible = false; iFix.visible = false;
+
+  // ---- parts checklist: remembered in this browser only ---------------------
+  (function () {
+    var KEY = "zipy-bom-v1", saved = null;
+    try { saved = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { saved = null; }
+    var boxes = Array.prototype.slice.call(document.querySelectorAll("#bom input[type=checkbox]"));
+    if (saved) { boxes.forEach(function (b) { if (b.id in saved) { b.checked = !!saved[b.id]; } }); }
+    boxes.forEach(function (b) {
+      b.addEventListener("change", function () {
+        var s = {}; boxes.forEach(function (x) { s[x.id] = x.checked; });
+        try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) { /* storage blocked: ticks just won't persist */ }
+      });
+    });
+  })();
+
+  // ---- camera ------------------------------------------------------------
+  var follow = true, lastCx = 0, camGoal = null;
+  var viewIds = ["v-anchor", "v-cart", "v-mot", "v-enc", "v-rig", "v-pend", "v-elbow"];
+  function setView(id, pos, target, doFollow) {
+    viewIds.forEach(function (k) {
+      document.getElementById(k).setAttribute("aria-pressed", String(k === id));
+    });
+    follow = doFollow;
+    camGoal = {
+      p: new THREE.Vector3(pos[0] + (doFollow ? cartX : 0), pos[1], pos[2]),
+      t: new THREE.Vector3(target[0] + (doFollow ? cartX : 0), target[1], target[2]),
+      from: camera.position.clone(), fromT: controls.target.clone(), t0: performance.now()
+    };
+  }
+  document.getElementById("v-anchor").addEventListener("click", function () {
+    setView("v-anchor", [-2, 22, 32], [-POST_DX, 4.5, SLOT_Z], true);
+  });
+  document.getElementById("v-cart").addEventListener("click", function () {
+    setView("v-cart", [60, 55, 78], [0, 6, 4], true);
+  });
+  document.getElementById("v-mot").addEventListener("click", function () {
+    setView("v-mot", [MX - 128, 46, 182], [MX + 18, -16, 0], false);
+  });
+  document.getElementById("v-enc").addEventListener("click", function () {
+    setView("v-enc", [IX - 95, 44, 110], [IX + 16, -4, 0], false);
+  });
+  document.getElementById("v-rig").addEventListener("click", function () {
+    setView("v-rig", [170, 420, 620], [10, -4, 0], false);
+  });
+  document.getElementById("v-pend").addEventListener("click", function () {
+    setView("v-pend", [430, 250, 650], [0, 180, -20], true);
+  });
+  function elbowCam() {
+    return route === "zipy" ? { p: [150, 330, 80], t: [0, 276, -78] } : { p: [130, 330, 150], t: [0, 274, -26] };
+  }
+  document.getElementById("v-elbow").addEventListener("click", function () {
+    var c = elbowCam(); setView("v-elbow", c.p, c.t, true);
+  });
+  function setRoute(r) {
+    route = r;
+    document.getElementById("r-zipy").setAttribute("aria-pressed", String(r === "zipy"));
+    document.getElementById("r-block").setAttribute("aria-pressed", String(r === "block"));
+    if (mode !== "elbow" && mode !== "dswing") { setMode("elbow"); return; }
+    if (mode === "elbow") { var c = elbowCam(); setView("v-elbow", c.p, c.t, true); }
+    rebuild();
+  }
+  document.getElementById("r-zipy").addEventListener("click", function () { setRoute("zipy"); });
+  document.getElementById("r-block").addEventListener("click", function () { setRoute("block"); });
+
+  // ---- loop --------------------------------------------------------------
+  function resize() {
+    var w = stage.clientWidth, h = stage.clientHeight;
+    if (!w || !h) { return; }
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  if (window.ResizeObserver) { new ResizeObserver(resize).observe(stage); }
+  window.addEventListener("resize", resize);
+  resize();
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function tick(now) {
+    if (playing) {
+      if (mode === "thread") {
+        var k = clamp01((now - playT0) / (reduce ? 1 : 5200));
+        thread = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+        if (k >= 1) { playing = false; }
+      } else if (mode === "drive") {
+        cartX = TRAVEL * Math.sin((now - playT0) * 0.0009);
+      } else if (mode === "swing") {
+        swingDeg = 150 * Math.sin((now - playT0) * 0.0016);
+      } else if (mode === "clamp") {
+        var kk = clamp01((now - playT0) / (reduce ? 1 : 9000));
+        clampT = kk;
+        if (kk >= 1) { playing = false; }
+      } else if (mode === "dswing") {
+        var tt = now - playT0;
+        swingDeg = 24 * Math.sin(tt * 0.0013);
+        phiDeg = 75 * Math.sin(tt * 0.0021 + 0.7);
+      } else if (mode === "elbow") {
+        var ke = clamp01((now - playT0) / (reduce ? 1 : 4200));
+        elbowEx = 1 - (ke < 0.5 ? 2 * ke * ke : 1 - Math.pow(-2 * ke + 2, 2) / 2);
+        if (ke >= 1) { playing = false; }
+      } else {
+        var kf = clamp01((now - playT0) / (reduce ? 1 : 3200));
+        explode = 1 - (kf < 0.5 ? 2 * kf * kf : 1 - Math.pow(-2 * kf + 2, 2) / 2);
+        if (kf >= 1) { playing = false; }
+      }
+      setSliderFromState();
+      rebuild();
+    }
+    if (follow) {
+      var d = cartX - lastCx;
+      if (d !== 0 && !camGoal) { camera.position.x += d; controls.target.x += d; }
+    }
+    lastCx = cartX;
+    if (camGoal) {
+      var kc = Math.min(1, (now - camGoal.t0) / (reduce ? 1 : 760));
+      var ec = 1 - Math.pow(1 - kc, 3);
+      camera.position.lerpVectors(camGoal.from, camGoal.p, ec);
+      controls.target.lerpVectors(camGoal.fromT, camGoal.t, ec);
+      if (kc >= 1) { camGoal = null; }
+    }
+    controls.update();
+    renderer.render(scene, camera);
+    placeCallouts(stage.clientWidth, stage.clientHeight, cartX);
+    requestAnimationFrame(tick);
+  }
+
+  setSliderFromState();
+  rebuild();
+  requestAnimationFrame(tick);
+})();
+</script>
+
+</body></html>
